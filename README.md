@@ -1,43 +1,54 @@
-# Astro Starter Kit: Minimal
+# MŠ Na Korábě — webové stránky
 
-```sh
-npm create astro@latest -- --template minimal
+Moderní webové stránky [Mateřské školy Na Korábě](http://www.msnakorabe.cz/), Praha 8 – Libeň.
+
+Statický web postavený na [Astro](https://astro.build/) + [Tailwind CSS 4](https://tailwindcss.com/). Kompiluje se do čistého HTML/CSS bez JavaScriptu.
+
+## Struktura projektu
+
+```
+src/
+├── components/        # Znovupoužitelné komponenty (Header, Footer, FeatureCard, ...)
+├── content/
+│   └── announcements/ # Aktuality jako Markdown soubory
+├── layouts/           # BaseLayout
+├── pages/             # Stránky webu (index, o-nas, program, tridy, pro-rodice, kontakt, 404)
+└── styles/            # Globální styly a barevná paleta
+public/
+├── documents/         # PDF dokumenty ke stažení
+└── images/            # Obrázky
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Aktuality
 
-## 🚀 Project Structure
+Aktuality se spravují jako Markdown soubory v `src/content/announcements/`. Každý soubor má frontmatter:
 
-Inside of your Astro project, you'll see the following folders and files:
+```markdown
+---
+title: "Název aktuality"
+date: 2026-01-20
+type: "aktualita" | "dulezite"
+active: true
+---
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+Text aktuality v Markdownu.
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- Nastavení `active: false` aktualitu skryje
+- Na hlavní stránce se zobrazují 3 nejnovější
+- Kompletní seznam je na stránce Pro rodiče
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Vývoj
 
-Any static assets, like images, can be placed in the `public/` directory.
+```bash
+npm install          # Instalace závislostí
+npm run dev          # Vývojový server na localhost:4321
+npm run build        # Produkční build do ./dist/
+npm run preview      # Náhled produkčního buildu
+```
 
-## 🧞 Commands
+## Nasazení
 
-All commands are run from the root of the project, from a terminal:
+Web se automaticky builduje a nasazuje na GitHub Pages přes GitHub Actions při každém pushnutí do `main`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Pro nasazení na vlastní hosting (FORPSI apod.) stačí nahrát obsah složky `dist/` přes FTP.

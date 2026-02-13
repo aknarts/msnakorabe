@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Kontakt | MŠ Na Korábě" description="Kontaktní informace MŠ Na Korábě a MŠ Lindnerova, Praha 8 – Libeň.">
   <!-- Page header -->
-  <section class="bg-primary-50 py-10">
+  <section class="bg-gradient-to-r from-primary-50 to-sky-50 py-10">
     <div class="max-w-6xl mx-auto px-4">
       <h1 class="text-3xl md:text-4xl font-bold text-primary-700">Kontakt</h1>
       <p class="text-gray-600 mt-2">Kontaktní informace obou pracovišť</p>
@@ -112,23 +112,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </section>
 
-    <!-- Map -->
+    <!-- Maps -->
     <section>
       <h2 class="text-2xl font-bold text-primary-700 mb-4">Kde nás najdete</h2>
-      <div class="rounded-2xl overflow-hidden shadow-md">
-        <iframe
-          src="https://frame.mapy.cz/s/cukahubofo"
-          width="100%"
-          height="400"
-          frameborder="0"
-          class="w-full"
-          loading="lazy"
-          title="Mapa - MŠ Na Korábě"
-        ></iframe>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Na Korábě map -->
+        <div>
+          <h3 class="font-semibold text-primary-700 mb-2">MŠ Na Korábě</h3>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=14.4650%2C50.1119%2C14.4710%2C50.1159&layer=mapnik&marker=50.113894%2C14.468020"
+              width="100%"
+              height="300"
+              frameborder="0"
+              class="w-full"
+              loading="lazy"
+              title="Mapa - MŠ Na Korábě"
+              style="border: 0;"
+            ></iframe>
+          </div>
+          <p class="text-sm text-gray-500 mt-2">
+            Na Korábě 2/350, Praha 8
+            <a href="https://mapy.com/cs/zakladni?q=Na%20Kor%C3%A1b%C4%9B%20350%2F2%20Praha%208&source=firm&id=406939&ds=2&x=14.4683309&y=50.1140574&z=19" target="_blank" rel="noopener" class="text-primary-500 hover:underline ml-1">Mapy.cz &rarr;</a>
+          </p>
+        </div>
+        <!-- Lindnerova map -->
+        <div>
+          <h3 class="font-semibold text-primary-700 mb-2">MŠ Lindnerova</h3>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=14.4700%2C50.1098%2C14.4760%2C50.1138&layer=mapnik&marker=50.111840%2C14.473007"
+              width="100%"
+              height="300"
+              frameborder="0"
+              class="w-full"
+              loading="lazy"
+              title="Mapa - MŠ Lindnerova"
+              style="border: 0;"
+            ></iframe>
+          </div>
+          <p class="text-sm text-gray-500 mt-2">
+            Lindnerova 1/575, Praha 8
+            <a href="https://mapy.com/cs/zakladni?q=Na%20Kor%C3%A1b%C4%9B%20350%2F2%20Praha%208&source=firm&id=2187455&ds=2&x=14.4741969&y=50.1121430&z=19" target="_blank" rel="noopener" class="text-primary-500 hover:underline ml-1">Mapy.cz &rarr;</a>
+          </p>
+        </div>
       </div>
-      <p class="text-xs text-gray-500 mt-2 text-center">
-        Obě pracoviště se nachází v Praze 8 – Libni, v docházkové vzdálenosti od sebe.
-      </p>
     </section>
   </div>
 </BaseLayout>
