@@ -166,88 +166,57 @@ const announcements = (await getCollection('announcements'))
     <section id="faq">
       <h2 class="text-2xl font-bold text-primary-700 mb-6">Často kladené otázky</h2>
       <div class="space-y-3">
-        <FaqItem question="Jaká je provozní doba? Kdo a kdy může dítě přivádět a odvádět?">
-          <p>Provozní doba je od <strong>6:30 / 7:00 do 17:00 hodin</strong>. Dítě je možné přivést i odvést kdykoliv během provozní doby.</p>
-          <p class="mt-2">Děti splňující povinnou předškolní docházku přichází do MŠ od 7:00 do 9:00. Doporučujeme příchod do 8:30, kdy začínají aktivity a řízené činnosti.</p>
-          <p class="mt-2">Dítě přivádí a vyzvedávají rodiče. Další osoby je nutné uvést do osobní karty dítěte. Nezletilý sourozenec může odvádět pouze na písemný doklad. Učitelka předá dítě cizí osobě jen na základě písemného zmocnění rodičů a po kontrole OP.</p>
-          <p class="mt-2"><strong>Rodiče jsou povinni předávat dítě učitelce a jsou zodpovědní za to, že je předávají zdravé.</strong></p>
+        <FaqItem question="Jaká je provozní doba a jak funguje předávání dětí?">
+          <p>Provozní doba je <strong>6:30 / 7:00 – 17:00</strong>. Přivést i vyzvednout dítě můžete kdykoliv během provozu. Děti s povinnou předškolní docházkou přichází od 7:00 do 9:00 (doporučujeme do 8:30).</p>
+          <p class="mt-2">Dítě vždy osobně předávejte učitelce — totéž platí při vyzvedávání. Další osoby oprávněné k vyzvednutí uveďte do osobní karty dítěte.</p>
+          <p class="mt-2"><strong>Rodiče odpovídají za to, že dítě předávají zdravé.</strong></p>
         </FaqItem>
 
-        <FaqItem question="Co vše potřebuje dítě do MŠ?">
+        <FaqItem question="Co potřebuje dítě do školky?">
           <ul class="list-disc list-inside space-y-1">
-            <li>Vhodné přezůvky</li>
-            <li>Pohodlné oblečení do třídy</li>
+            <li>Přezůvky a pohodlné oblečení do třídy</li>
             <li>Pyžamo</li>
-            <li>Látkový pytel na náhradní prádlo (zůstává v šatně)</li>
-            <li>Převlečení na školní zahradu</li>
-            <li>Oblečení do solné jeskyně (bačkory, tepláky, mikinu)</li>
-            <li>Náhradní oblečení pro případ nehody</li>
-            <li>Kelímek s kartáčkem a pastou</li>
-            <li>Případně vlhčené ubrousky</li>
+            <li>Převlečení na zahradu a náhradní oblečení</li>
+            <li>Oblečení do solné jeskyně (bačkory, tepláky, mikina)</li>
+            <li>Kartáček na zuby s pastou</li>
           </ul>
-          <p class="mt-2 font-bold">Vše podepsané!</p>
+          <p class="mt-2"><strong>Vše prosíme podepsané!</strong></p>
         </FaqItem>
 
-        <FaqItem question="Jak probíhá adaptace dětí v MŠ?">
-          <p>Každé nové dítě prochází adaptační dobou, která závisí na osobnosti dítěte. Rodiče mají možnost, po dohodě s učitelkou, pobýt s dítětem ve třídě.</p>
-          <p class="mt-2">Menším dětem pomáhá, pokud mohou v první dny jít domů nejprve před vycházkou, pak před obědem nebo po něm. V prvních dnech pomáhá jasné a pozitivní loučení, které se zbytečně neprodlužuje.</p>
+        <FaqItem question="Jak probíhá adaptace?">
+          <p>Každé dítě si zvyká jinak. Po dohodě s učitelkou můžete v prvních dnech pobýt s dítětem ve třídě. Menším dětem pomáhá postupné prodlužování pobytu — nejprve do vycházky, pak do oběda, postupně na celý den.</p>
+          <p class="mt-2">Tip: Loučení ať je krátké, jasné a pozitivní.</p>
         </FaqItem>
 
-        <FaqItem question="Musí mé dítě ve školce spát?">
-          <p>Nemusí — stačí, když odpočívá. Při relaxaci se rozvíjí fantazie a snová představivost. Odpočinek je biologická potřeba každého organismu. Často se stává, že děti, které doma po obědě neodpočívají, usnou ve školce již při čtení pohádky.</p>
+        <FaqItem question="Musí dítě ve školce spát?">
+          <p>Nemusí — stačí odpočívat. Čteme pohádky, pouštíme relaxační hudbu. Mnohé děti, které doma nespí, ve školce klidně usnou.</p>
         </FaqItem>
 
-        <FaqItem question="Mohu nechat dítě na chodbě s tím, že do třídy dojde samo?">
-          <p><strong>Ne</strong> — vždy je potřeba předat dítě paní učitelce. Totéž platí při odchodu: rodič je povinen oznámit učitelce, že si dítě odvádí. To především z bezpečnostních důvodů, ale také tím děti učíme pravidlům slušného chování.</p>
+        <FaqItem question="Jak omluvit nepřítomnost dítěte?">
+          <p>Absenci omluvte osobně, telefonicky nebo emailem <strong>do 8:00</strong>. Jinak je dítě automaticky přihlášeno ke stravování.</p>
         </FaqItem>
 
-        <FaqItem question="Jak omluvit dítě v MŠ?">
-          <p>Každou absenci je třeba omluvit osobně, telefonicky nebo elektronicky <strong>do 8:00</strong>, jinak je dítě automaticky počítáno a na oběd je hlášeno.</p>
+        <FaqItem question="Jak funguje stravování?">
+          <p>Dopolední svačina, oběd (polévka + hlavní chod) a odpolední svačina. Celý den je k dispozici pitný režim (voda, čaj, šťáva).</p>
+          <p class="mt-2">Jídelníček najdete na nástěnce v šatně a na Moodlu. Dietní stravování je možné po dohodě s lékařským potvrzením.</p>
         </FaqItem>
 
-        <FaqItem question="Co dítě ve školce jí a pije?">
-          <p>Dítě dostane dopolední svačinu, v poledne (11:30–12:15) oběd (polévka a hlavní chod) a po odpoledním odpočinku odpolední svačinu.</p>
-          <p class="mt-2">Po celý den je zabezpečen pitný režim — voda, čaj nebo šťáva. Jídelníček je vyvěšen na nástěnce v šatně a na Moodlu.</p>
-          <p class="mt-2">Ve školní jídelně je možné připravovat dietní stravování po dohodě a doložení lékařskou zprávou.</p>
+        <FaqItem question="Jaké kroužky a aktivity nabízíte?">
+          <p><strong>V ceně školného:</strong> sauna, solná jeskyně, kroužek předškoláka, Klub malého diváka</p>
+          <p class="mt-2"><strong>Placené kroužky:</strong> plavání, angličtina, keramika, flétna, jóga, kung-fu</p>
+          <p class="mt-2">Kroužky jsou primárně pro starší děti. U mladších (3–4 roky) záleží na individuální zralosti.</p>
         </FaqItem>
 
-        <FaqItem question="Jaké nadstandardní aktivity MŠ nabízí?">
-          <p><strong>Placené kroužky:</strong></p>
-          <ul class="list-disc list-inside space-y-1 mt-1">
-            <li>Plavecký výcvik (bazén Hloubětín)</li>
-            <li>Flétna</li>
-            <li>Angličtina</li>
-            <li>Keramika</li>
-            <li>Jóga pro děti</li>
-          </ul>
-          <p class="mt-3"><strong>Neplacené aktivity:</strong></p>
-          <ul class="list-disc list-inside space-y-1 mt-1">
-            <li>Sauna</li>
-            <li>Solná jeskyně</li>
-            <li>Kroužek předškoláka</li>
-            <li>Klub mladého diváka</li>
-          </ul>
+        <FaqItem question="Co když dítě ve školce onemocní?">
+          <p><strong>Ano, je potřeba si dítě co nejdříve vyzvednout.</strong> Učitelka vás kontaktuje při teplotě, zvracení, průjmu, zánětu očí nebo výskytu vší.</p>
         </FaqItem>
 
-        <FaqItem question="Je vhodné, aby 3–4leté dítě chodilo do kroužků?">
-          <p>Záleží na individuálních schopnostech každého dítěte. Kroužky jsou koncipovány pro starší děti — náročnost a délka nutného soustředění. Tyto nadstandardní aktivity mají rozvíjet rozumové schopnosti a talent dítěte.</p>
+        <FaqItem question="Jak se dozvím o akcích a dění ve školce?">
+          <p>Přes <a href="http://dlk.cuni.cz/course/view.php?id=98" class="text-primary-500 hover:underline" target="_blank" rel="noopener">Moodle</a> (informační portál pro rodiče), na webu školy a na nástěnkách v šatnách.</p>
         </FaqItem>
 
-        <FaqItem question="Musím si přijít pro dítě, když učitelka zavolá, že jeví známky choroby?">
-          <p><strong>Ano</strong>, v zájmu jeho zdraví určitě, a to nejlépe co nejdříve. Týká se to především zánětu očí, průjmových onemocnění, teploty, zvracení, výskytu dětské vši apod.</p>
-        </FaqItem>
-
-        <FaqItem question="Kde se dozvím o akcích v MŠ?">
-          <p>Na <a href="http://dlk.cuni.cz/course/view.php?id=98" class="text-primary-500 hover:underline" target="_blank" rel="noopener">Moodlu</a>, webu školy, na nástěnkách a příležitostných vývěskách v prostorách MŠ.</p>
-        </FaqItem>
-
-        <FaqItem question="Co je Moodle?">
-          <p>Informační portál pro rodiče a pedagogický personál, kde jsou uloženy všechny potřebné informace o aktuálním dění v mateřské škole. Rodiče mají možnost být ve stálé interakci s pedagogy i mezi sebou. Portál slouží také jako úložiště pro metodické, didaktické a odborné materiály.</p>
-        </FaqItem>
-
-        <FaqItem question="Kdy mohu diskutovat o záležitostech svého dítěte s učitelkou nebo vedením?">
-          <p>S třídní učitelkou můžete řešit otázky při příchodu či odchodu dítěte ze školky. Ideální je domluvit si konzultační hodinu (objednání lze uskutečnit i přes Moodle).</p>
-          <p class="mt-2">S ředitelkou školy si můžete schůzku sjednat osobně, po předchozí telefonické domluvě nebo přes třídní učitelky.</p>
+        <FaqItem question="Kdy mohu mluvit s učitelkou nebo ředitelkou?">
+          <p>S třídní učitelkou při předávání dítěte, nebo si domluvte konzultaci přes Moodle. S ředitelkou po předchozí telefonické domluvě.</p>
         </FaqItem>
       </div>
     </section>
