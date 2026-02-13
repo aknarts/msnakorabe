@@ -1,0 +1,45 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-primary-800 text-primary-100 mt-16">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- School info -->
+      <div>
+        <h3 class="text-white font-bold text-lg mb-3">MŠ Na Korábě</h3>
+        <p class="text-sm leading-relaxed">
+          Na Korábě 2/350<br />
+          180 00 Praha 8 – Libeň<br />
+          Tel: <a href="tel:+420283842809" class="hover:text-white">+420 283 842 809</a>
+        </p>
+      </div>
+
+      <!-- Second location -->
+      <div>
+        <h3 class="text-white font-bold text-lg mb-3">MŠ Lindnerova</h3>
+        <p class="text-sm leading-relaxed">
+          Lindnerova 1/575<br />
+          180 00 Praha 8 – Libeň<br />
+          Tel: <a href="tel:+420284842026" class="hover:text-white">+420 284 842 026</a>
+        </p>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <h3 class="text-white font-bold text-lg mb-3">Rychlé odkazy</h3>
+        <ul class="text-sm space-y-1.5">
+          <li><a href="/pro-rodice" class="hover:text-white transition-colors">Pro rodiče</a></li>
+          <li><a href="/pro-rodice#dokumenty" class="hover:text-white transition-colors">Dokumenty ke stažení</a></li>
+          <li><a href="/kontakt" class="hover:text-white transition-colors">Kontakt</a></li>
+          <li><a href="http://dlk.cuni.cz/course/view.php?id=98" class="hover:text-white transition-colors" target="_blank" rel="noopener">Moodle portál</a></li>
+          <li><a href="http://msnakorabe.rajce.idnes.cz/" class="hover:text-white transition-colors" target="_blank" rel="noopener">Fotogalerie</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-primary-600 mt-8 pt-6 text-center text-xs text-primary-300">
+      &copy; {currentYear} Mateřská škola, Praha 8, Na Korábě 2 &middot; IČO: 70919747
+    </div>
+  </div>
+</footer>
