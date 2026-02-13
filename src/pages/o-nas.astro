@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="O nás | MŠ Na Korábě" description="Mateřská škola Na Korábě – rodinná školka v Praze 8 s vlastní zahradou, saunou a oceňovanou jídelnou.">
+  <!-- Page header -->
+  <section class="bg-primary-50 py-10">
+    <div class="max-w-6xl mx-auto px-4">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary-700">O nás</h1>
+      <p class="text-gray-600 mt-2">Mateřská škola, Praha 8, Na Korábě 2</p>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 py-10 space-y-12">
+    <!-- Philosophy -->
+    <section>
+      <h2 class="text-2xl font-bold text-primary-700 mb-4">Filosofie školy</h2>
+      <blockquote class="border-l-4 border-accent-400 pl-4 italic text-gray-600 mb-4">
+        „Uspokojovat potřeby dětí, nabízet podněty pro rozvoj individuálního potenciálu, 
+        intelektuálních, citových a sociálních schopností. Umožnit dítěti prostřednictvím 
+        prožitků získávat zkušenost, probouzet zájem o hodnoty, vést dítě k osvojení postojů 
+        a dovedností, které budou dobrým základem do života."
+      </blockquote>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Naše mateřské školy jsou školou rodinného typu. Mezi naše hlavní oblasti zájmů patří 
+        mravní, citová a tělesná výchova. Snažíme se v dětech posilovat vlastní sebedůvěru, 
+        samostatnost a schopnost rozhodování se — vše maximálně hravou formou.
+      </p>
+      <p class="text-gray-700 leading-relaxed">
+        Pro sjednocení těchto aktivit a dosažení našich cílů jsme vytvořili vlastní vzdělávací 
+        program <strong>„Na jedné lodi — Korábu"</strong>, který děti provází po celý rok.
+      </p>
+    </section>
+
+    <!-- Two locations -->
+    <section>
+      <h2 class="text-2xl font-bold text-primary-700 mb-6">Naše pracoviště</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+          <img src="/images/img4D.jpg" alt="Budova MŠ Na Korábě" class="w-full h-48 object-cover" loading="lazy" />
+          <div class="p-5">
+            <h3 class="font-bold text-lg text-primary-700 mb-1">MŠ Na Korábě</h3>
+            <p class="text-gray-600 text-sm">Na Korábě 2/350, 180 00 Praha 8 – Libeň</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+          <img src="/images/img4E.jpg" alt="Budova MŠ Lindnerova" class="w-full h-48 object-cover" loading="lazy" />
+          <div class="p-5">
+            <h3 class="font-bold text-lg text-primary-700 mb-1">MŠ Lindnerova</h3>
+            <p class="text-gray-600 text-sm">Lindnerova 1/575, 180 00 Praha 8 – Libeň</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Garden -->
+    <section>
+      <h2 class="text-2xl font-bold text-primary-700 mb-4">Školní zahrada</h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Školka nabízí prostornou zahradu parkového typu, jejíž členitost umožňuje využití 
+        k funkčním, estetickým a prožitkovým variantám výchovných činností. Zahrada je vybavena 
+        moderními herními prvky a záhonky s plodinami, o které se děti samy starají.
+      </p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <img src="/images/img54.jpg" alt="Školní zahrada" class="rounded-xl w-full h-56 object-cover" loading="lazy" />
+        <img src="/images/img55.jpg" alt="Dětské záhonky" class="rounded-xl w-full h-56 object-cover" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- Cafeteria -->
+    <section>
+      <h2 class="text-2xl font-bold text-primary-700 mb-4">Školní jídelna</h2>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Stravování dětí zajišťují školní jídelny. Snažíme se dětem poskytovat pestrou a vyváženou stravu, 
+        k čemuž dopomáhají špičkové paní kuchařky.
+      </p>
+      <div class="bg-accent-50 rounded-xl p-5 mb-6">
+        <h3 class="font-bold text-primary-700 mb-2">Ocenění</h3>
+        <ul class="text-gray-700 text-sm space-y-1.5 list-disc list-inside">
+          <li><strong>1. místo</strong> v soutěži „Školní jídelna chutně a zdravě" (HHMP, 2016/2017)</li>
+          <li><strong>4x finále</strong> celostátní soutěže „O nejlepší školní oběd"</li>
+          <li><strong>4. místo</strong> z 90 týmů školních jídelen z celé ČR (2013)</li>
+          <li><strong>Cena veřejnosti</strong> (2014)</li>
+        </ul>
+      </div>
+      <img src="/images/img56.jpg" alt="Kolektiv školní jídelny" class="rounded-xl w-full max-w-md" loading="lazy" />
+    </section>
+
+    <!-- Cooperation -->
+    <section>
+      <h2 class="text-2xl font-bold text-primary-700 mb-4">Spolupráce a podpora</h2>
+      <ul class="text-gray-700 space-y-2 list-disc list-inside">
+        <li>Spolupráce s Pedagogicko-psychologickou poradnou pro Prahu 7 a 8</li>
+        <li>Možnost zpracování individuálního výukového plánu</li>
+        <li>Informační portál <a href="http://dlk.cuni.cz/course/view.php?id=98" class="text-primary-500 hover:underline" target="_blank" rel="noopener">Moodle</a> pro rodiče a pedagogy</li>
+        <li>Spolupracující katedrová škola katedry Školského managementu PedF UK</li>
+        <li>Zapojení do projektu MAP MČ Praha 8</li>
+      </ul>
+    </section>
+
+    <!-- Staff -->
+    <section>
+      <h2 class="text-2xl font-bold text-primary-700 mb-4">Provozní zázemí</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-bold text-primary-700 mb-2">Školní jídelna</h3>
+          <p class="text-sm text-gray-600">Vedoucí: Mgr. Francová Lucie</p>
+          <p class="text-sm text-gray-600 mt-2"><strong>MŠ Na Korábě:</strong> Horňáková Kristina (vedoucí kuchařka), Gunárová Kristina</p>
+          <p class="text-sm text-gray-600 mt-1"><strong>MŠ Lindnerova:</strong> Větrovcová Markéta (vedoucí kuchařka), Palmová Daniela</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-bold text-primary-700 mb-2">Provoz</h3>
+          <p class="text-sm text-gray-600">Školnice: Brousilová Soňa</p>
+          <p class="text-sm text-gray-600 mt-1">Uklízečky: Hrymut Oksana, Malon Vitalia, Spilková Stanislava</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

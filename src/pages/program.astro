@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+---
+
+<BaseLayout title="Program | MŠ Na Korábě" description="Aktivity a kroužky MŠ Na Korábě – sauna, solná jeskyně, plavání, angličtina, keramika, školka v přírodě a další.">
+  <!-- Page header -->
+  <section class="bg-primary-50 py-10">
+    <div class="max-w-6xl mx-auto px-4">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary-700">Program</h1>
+      <p class="text-gray-600 mt-2">Aktivity a kroužky pro vaše děti</p>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 py-10 space-y-12">
+    <!-- Activities -->
+    <section>
+      <h2 class="text-2xl font-bold text-primary-700 mb-6">Aktivity</h2>
+      <p class="text-gray-700 leading-relaxed mb-8">
+        V rámci školního roku realizujeme řadu aktivit zaměřených na zdravý životní styl, 
+        rozvoj osobnosti a poznávání světa kolem nás.
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <FeatureCard
+          image="/images/img5A.jpg"
+          title="Sauna"
+          description="Pravidelné saunování v naší vlastní sauně. Jsme členem Asociace saunujících školek ČR."
+        />
+        <FeatureCard
+          image="/images/img5F.jpg"
+          title="Solná jeskyně"
+          description="Vlastní solná jeskyně pro povzbuzení imunitního systému a podporu při léčbě zdravotních onemocnění."
+        />
+        <FeatureCard
+          image="/images/img5C.jpg"
+          title="Škola v přírodě"
+          description="2x ročně — na podzim do podhůří Šumavy a na jaře do Jizerských hor."
+        />
+        <FeatureCard
+          image="/images/img5E.jpg"
+          title="Moderní technologie"
+          description="Interaktivní tabule ActiveBoard, MagicBox, digitální mikroskopy, počítače a další."
+        />
+        <FeatureCard
+          image="/images/img5B.jpg"
+          title="Počítačová gramotnost"
+          description="Rozvíjíme s dětmi počítačovou gramotnost pomocí moderních technologií."
+        />
+        <FeatureCard
+          icon="🎭"
+          title="Divadlo"
+          description="Každý měsíc divadelní představení přímo v MŠ. Pravidelné návštěvy stálé divadelní scény v rámci Klubu malého diváka."
+        />
+      </div>
+
+      <!-- Additional activities list -->
+      <div class="mt-8 bg-gray-50 rounded-2xl p-6">
+        <h3 class="font-bold text-primary-700 mb-3">Další aktivity</h3>
+        <ul class="text-gray-700 text-sm space-y-2 list-disc list-inside columns-1 md:columns-2">
+          <li>Zdravotní projekt „Zdravá ABECEDA"</li>
+          <li>Projekt „Celé Česko čte dětem"</li>
+          <li>Zubní hygiena v rámci projektových dnů</li>
+          <li>Tělesná výchova ve vlastních tělocvičnách</li>
+          <li>Keramické dílny, táborák a vánoční dílny pro rodiče s dětmi</li>
+          <li>Environmentální výchova — pěstitelské a chovatelské pokusy</li>
+          <li>Prevence negativních vlivů a závislostí</li>
+          <li>Projekt „Medvídkova nemocnice" (studenti LF UK)</li>
+          <li>„Prevence dětem" — bezpečnostní průprava dětí</li>
+          <li>Dental Prevention — zubní prevence</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Clubs -->
+    <section>
+      <h2 class="text-2xl font-bold text-primary-700 mb-6">Kroužky</h2>
+      <p class="text-gray-700 leading-relaxed mb-8">
+        Nad rámec běžné výuky jsou pro zájemce připraveny následující kroužky a zájmové aktivity:
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <FeatureCard
+          icon="🇬🇧"
+          title="Angličtina hrou"
+          description="Výuka anglického jazyka hravou formou."
+        />
+        <FeatureCard
+          image="/images/img52.jpg"
+          title="Keramický kroužek"
+          description="Tvořivá práce s keramikou rozvíjí jemnou motoriku a fantazii."
+        />
+        <FeatureCard
+          image="/images/img51.jpg"
+          title="Plavecký kurz"
+          description="Plavecký výcvik v bazénu Hloubětín."
+        />
+        <FeatureCard
+          icon="🎵"
+          title="Hra na flétnu"
+          description="Hudební kroužek s výukou hry na zobcovou flétnu."
+        />
+        <FeatureCard
+          icon="📚"
+          title="Kroužek šikovného předškoláka"
+          description="Příprava dětí na vstup do základní školy."
+        />
+        <FeatureCard
+          icon="🥋"
+          title="Kung-fu"
+          description="Bojové umění rozvíjí koordinaci, disciplínu a sebedůvěru."
+        />
+        <FeatureCard
+          icon="🧘"
+          title="Jóga"
+          description="Jóga pro děti — relaxace, rovnováha a pohyb."
+        />
+      </div>
+
+      <div class="mt-6 bg-accent-50 rounded-xl p-5 text-sm text-gray-700">
+        <strong>Poznámka:</strong> Kroužky jsou koncipovány pro starší děti. U 3–4letých dětí 
+        záleží na individuálních schopnostech. Více informací v sekci 
+        <a href="/pro-rodice#faq" class="text-primary-500 hover:underline">Často kladené otázky</a>.
+      </div>
+    </section>
+  </div>
+</BaseLayout>
