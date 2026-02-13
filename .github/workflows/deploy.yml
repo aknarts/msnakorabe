@@ -48,6 +48,7 @@ jobs:
         run: npm run build
         env:
           SITE_URL: https://aknarts.github.io
+          BASE_PATH: /msnakorabe
 
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
