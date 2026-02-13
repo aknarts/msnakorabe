@@ -69,6 +69,56 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          # Find the previous release tag
+          PREV_TAG=$(git tag --list 'build-*' --sort=-version:refname | head -n 1)
+
+          {
+            echo 'RELEASE_BODY<<RELEASE_EOF'
+
+            if [ -n "$PREV_TAG" ]; then
+              RANGE="${PREV_TAG}..HEAD"
+              echo "## Změny od posledního releasu ($PREV_TAG)"
+            else
+              RANGE="HEAD"
+              echo "## První release"
+            fi
+
+            echo ""
+
+            # Commit list with author
+            echo "### Commity"
+            echo ""
+            if [ -n "$PREV_TAG" ]; then
+              git log "$RANGE" --pretty=format:"- %s (%an)" --no-merges
+            else
+              git log --pretty=format:"- %s (%an)" --no-merges -20
+            fi
+
+            echo ""
+            echo ""
+
+            # Diffstat summary
+            echo "### Změněné soubory"
+            echo ""
+            echo '```'
+            if [ -n "$PREV_TAG" ]; then
+              git diff --stat "$PREV_TAG"..HEAD -- ':!archive' ':!node_modules'
+            else
+              echo "(první build — všechny soubory)"
+            fi
+            echo '```'
+
+            echo 'RELEASE_EOF'
+          } >> "$GITHUB_OUTPUT"
+
       - name: Download dist zip
         uses: actions/download-artifact@v4
         with:
@@ -79,5 +129,5 @@ jobs:
         with:
           tag_name: build-${{ github.run_number }}
           name: Build ${{ github.run_number }}
-          body: "Automatický build z commitu ${{ github.sha }}"
+          body: ${{ steps.notes.outputs.RELEASE_BODY }}
           files: msnakorabe-dist.zip

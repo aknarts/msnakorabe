@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnnouncementCard from '../components/AnnouncementCard.astro';
 import FaqItem from '../components/FaqItem.astro';
+import { url } from '../utils';
 import { getCollection, render } from 'astro:content';
 
 const announcements = (await getCollection('announcements'))
@@ -10,7 +11,7 @@ const announcements = (await getCollection('announcements'))
 
 <BaseLayout title="Pro rodiče | MŠ Na Korábě" description="Informace pro rodiče — dokumenty ke stažení, často kladené otázky, aktuality MŠ Na Korábě.">
   <!-- Page header -->
-  <section class="bg-primary-50 py-10">
+  <section class="bg-gradient-to-r from-primary-50 to-sky-50 py-10">
     <div class="max-w-6xl mx-auto px-4">
       <h1 class="text-3xl md:text-4xl font-bold text-primary-700">Pro rodiče</h1>
       <p class="text-gray-600 mt-2">Dokumenty, aktuality a odpovědi na vaše otázky</p>
@@ -46,7 +47,7 @@ const announcements = (await getCollection('announcements'))
         }))}
       </div>
       <div class="mt-4">
-        <a href="/documents/akce-2025-2026.pdf" class="text-primary-500 hover:underline text-sm" target="_blank">
+        <a href={url('/documents/akce-2025-2026.pdf')} class="text-primary-500 hover:underline text-sm" target="_blank">
           Plán akcí na školní rok 2025/2026 (PDF)
         </a>
       </div>
@@ -60,19 +61,19 @@ const announcements = (await getCollection('announcements'))
       <div class="mb-8">
         <h3 class="font-bold text-primary-700 mb-3 text-lg">Přijímací řízení 2026/2027</h3>
         <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href="/documents/zadost-o-prijeti.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/zadost-o-prijeti.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Žádost o přijetí</span>
           </a>
-          <a href="/documents/evidencni-list.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/evidencni-list.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Evidenční list</span>
           </a>
-          <a href="/documents/kriteria-prijeti.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/kriteria-prijeti.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Kritéria pro přijetí</span>
           </a>
-          <a href="/documents/moznosti-podani-prihlasky.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/moznosti-podani-prihlasky.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Možnosti podání přihlášky</span>
           </a>
@@ -83,35 +84,35 @@ const announcements = (await getCollection('announcements'))
       <div class="mb-8">
         <h3 class="font-bold text-primary-700 mb-3 text-lg">Školní řád a formuláře</h3>
         <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href="/documents/skolni-rad-2025.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/skolni-rad-2025.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Školní řád 2025</span>
           </a>
-          <a href="/documents/svp-2025-2027.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/svp-2025-2027.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Školní vzdělávací program 2025–2027</span>
           </a>
-          <a href="/documents/formular-pozdni-prichody.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/formular-pozdni-prichody.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Formulář pozdní příchody</span>
           </a>
-          <a href="/documents/zastupovani-rodicu.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/zastupovani-rodicu.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Zastupování rodičů jinými osobami</span>
           </a>
-          <a href="/documents/dohoda-leky.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/dohoda-leky.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Dohoda — léky</span>
           </a>
-          <a href="/documents/dohoda-nezletily-sourozenec.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/dohoda-nezletily-sourozenec.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Dohoda o převzetí dítěte nezletilým sourozencem</span>
           </a>
-          <a href="/documents/posudek-zdravotni-zpusobilost.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/posudek-zdravotni-zpusobilost.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Posudek o zdravotní způsobilosti</span>
           </a>
-          <a href="/documents/zadost-prominuti-skolneho.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/zadost-prominuti-skolneho.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Žádost o prominutí školného 2025/2026</span>
           </a>
@@ -122,23 +123,23 @@ const announcements = (await getCollection('announcements'))
       <div class="mb-8">
         <h3 class="font-bold text-primary-700 mb-3 text-lg">Školka v přírodě</h3>
         <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href="/documents/svpr-prihlaska-kitty.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/svpr-prihlaska-kitty.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Přihláška — Kitty</span>
           </a>
-          <a href="/documents/svpr-prihlaska-cestice.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/svpr-prihlaska-cestice.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Přihláška — Čestice</span>
           </a>
-          <a href="/documents/svpr-bezinfekcnost-kitty.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/svpr-bezinfekcnost-kitty.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Bezinfekčnost — Kitty</span>
           </a>
-          <a href="/documents/svpr-seznam-veci.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/svpr-seznam-veci.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Seznam věcí</span>
           </a>
-          <a href="/documents/svpr-zdravotni-dotaznik.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/svpr-zdravotni-dotaznik.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Zdravotní dotazník</span>
           </a>
@@ -149,11 +150,11 @@ const announcements = (await getCollection('announcements'))
       <div>
         <h3 class="font-bold text-primary-700 mb-3 text-lg">Ochrana osobních údajů</h3>
         <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href="/documents/gdpr-smernice.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/gdpr-smernice.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Směrnice ochrany osobních údajů</span>
           </a>
-          <a href="/documents/gdpr-doplnujici.zip" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/gdpr-doplnujici.zip')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-blue-500 shrink-0">ZIP</span>
             <span class="text-gray-700 text-sm">Doplňující dokumenty</span>
           </a>
@@ -277,15 +278,15 @@ const announcements = (await getCollection('announcements'))
       <div class="mt-6">
         <h3 class="font-bold text-primary-700 mb-3">Rozpočtové dokumenty</h3>
         <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href="/documents/rozpocet-2025-schvaleny.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/rozpocet-2025-schvaleny.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Schválený rozpočet na rok 2025</span>
           </a>
-          <a href="/documents/navrh-rozpoctu-2025-2027.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/navrh-rozpoctu-2025-2027.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Návrh rozpočtu 2025 a střednědobý výhled 2026–2027</span>
           </a>
-          <a href="/documents/strednedoby-vyhled-2026-2028.pdf" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+          <a href={url('/documents/strednedoby-vyhled-2026-2028.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
             <span class="text-red-500 shrink-0">PDF</span>
             <span class="text-gray-700 text-sm">Střednědobý výhled 2026–2028</span>
           </a>

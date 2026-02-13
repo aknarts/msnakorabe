@@ -1,4 +1,6 @@
 ---
+import { url } from '../utils';
+
 interface Props {
   currentPath: string;
 }
@@ -6,17 +8,20 @@ interface Props {
 const { currentPath } = Astro.props;
 
 const navItems = [
-  { href: '/', label: 'Domů' },
-  { href: '/o-nas', label: 'O nás' },
-  { href: '/program', label: 'Program' },
-  { href: '/tridy', label: 'Třídy' },
-  { href: '/pro-rodice', label: 'Pro rodiče' },
-  { href: '/kontakt', label: 'Kontakt' },
+  { href: url('/'), label: 'Domů' },
+  { href: url('/o-nas'), label: 'O nás' },
+  { href: url('/program'), label: 'Program' },
+  { href: url('/tridy'), label: 'Třídy' },
+  { href: url('/pro-rodice'), label: 'Pro rodiče' },
+  { href: url('/kontakt'), label: 'Kontakt' },
 ];
 
 function isActive(href: string): boolean {
-  if (href === '/') return currentPath === '/' || currentPath === '';
-  return currentPath.startsWith(href);
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  const normalizedPath = currentPath.replace(/\/$/, '') || '/';
+  const normalizedHref = href.replace(/\/$/, '') || '/';
+  if (normalizedHref === base || normalizedHref === '/') return normalizedPath === base || normalizedPath === '/' || normalizedPath === '';
+  return normalizedPath.startsWith(normalizedHref);
 }
 ---
 
@@ -24,8 +29,8 @@ function isActive(href: string): boolean {
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 shrink-0">
-        <img src="/images/logo.png" alt="MŠ Na Korábě" class="h-10 md:h-14 w-auto rounded-full bg-white/10 p-1" />
+      <a href={url('/')} class="flex items-center gap-3 shrink-0">
+        <img src={url('/images/logo.png')} alt="MŠ Na Korábě" class="h-10 md:h-14 w-auto rounded-full bg-white/10 p-1" />
         <div class="hidden sm:block">
           <div class="font-bold text-lg leading-tight">MŠ Na Korábě</div>
           <div class="text-primary-200 text-xs">Praha 8 – Libeň</div>

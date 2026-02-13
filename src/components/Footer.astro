@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -29,9 +30,9 @@ const currentYear = new Date().getFullYear();
       <div>
         <h3 class="text-white font-bold text-lg mb-3">Rychlé odkazy</h3>
         <ul class="text-sm space-y-1.5">
-          <li><a href="/pro-rodice" class="hover:text-white transition-colors">Pro rodiče</a></li>
-          <li><a href="/pro-rodice#dokumenty" class="hover:text-white transition-colors">Dokumenty ke stažení</a></li>
-          <li><a href="/kontakt" class="hover:text-white transition-colors">Kontakt</a></li>
+          <li><a href={url('/pro-rodice')} class="hover:text-white transition-colors">Pro rodiče</a></li>
+          <li><a href={url('/pro-rodice#dokumenty')} class="hover:text-white transition-colors">Dokumenty ke stažení</a></li>
+          <li><a href={url('/kontakt')} class="hover:text-white transition-colors">Kontakt</a></li>
           <li><a href="http://dlk.cuni.cz/course/view.php?id=98" class="hover:text-white transition-colors" target="_blank" rel="noopener">Moodle portál</a></li>
           <li><a href="http://msnakorabe.rajce.idnes.cz/" class="hover:text-white transition-colors" target="_blank" rel="noopener">Fotogalerie</a></li>
         </ul>

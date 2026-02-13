@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { url } from '../utils';
 ---
 
 <BaseLayout title="Stránka nenalezena | MŠ Na Korábě">
@@ -10,7 +11,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       Stránka, kterou hledáte, neexistuje nebo byla přesunuta. 
       Vraťte se na hlavní palubu!
     </p>
-    <a href="/" class="inline-block bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors">
+    <a href={url('/')} class="inline-block bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors">
       Zpět na úvodní stránku
     </a>
   </div>

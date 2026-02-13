@@ -1,4 +1,6 @@
 ---
+import { url } from '../utils';
+
 interface Props {
   title: string;
   description: string;
@@ -12,7 +14,7 @@ const { title, description, image, icon } = Astro.props;
 <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col">
   {image && (
     <div class="h-48 overflow-hidden">
-      <img src={image} alt={title} class="w-full h-full object-cover" loading="lazy" />
+      <img src={url(image)} alt={title} class="w-full h-full object-cover" loading="lazy" />
     </div>
   )}
   <div class="p-6 flex-1 flex flex-col">
