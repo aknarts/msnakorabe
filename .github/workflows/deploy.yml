@@ -33,6 +33,15 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Package dist as zip
+        run: cd dist && zip -r ../msnakorabe-dist.zip .
+
+      - name: Upload dist zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: msnakorabe-dist
+          path: msnakorabe-dist.zip
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
