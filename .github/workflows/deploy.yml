@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build & Deploy
 
 on:
   push:
@@ -30,7 +30,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      # Production build (for FORPSI hosting)
+      - name: Build for production
         run: npm run build
 
       - name: Package dist as zip
@@ -42,7 +43,13 @@ jobs:
           name: msnakorabe-dist
           path: msnakorabe-dist.zip
 
-      - name: Upload artifact
+      # GitHub Pages build
+      - name: Build for GitHub Pages
+        run: npm run build
+        env:
+          SITE_URL: https://aknarts.github.io
+
+      - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
