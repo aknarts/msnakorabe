@@ -11,7 +11,7 @@ const management = personnelEntries.filter(p => p.data.section === 'management')
 
 <BaseLayout title="Kontakt | MŠ Na Korábě" description="Kontaktní informace MŠ Na Korábě a MŠ Lindnerova, Praha 8 – Libeň.">
   <!-- Page header -->
-  <section class="bg-gradient-to-r from-primary-50 to-sky-50 py-10">
+  <section class="bg-gradient-to-r from-accent-50 to-sky-50 py-10">
     <div class="max-w-6xl mx-auto px-4">
       <h1 class="text-3xl md:text-4xl font-bold text-primary-700">Kontakt</h1>
       <p class="text-gray-600 mt-2">Kontaktní informace obou pracovišť</p>
@@ -30,51 +30,31 @@ const management = personnelEntries.filter(p => p.data.section === 'management')
 
     <!-- Locations -->
     <div class="grid md:grid-cols-2 gap-6">
-      <!-- Na Korábě -->
-      <div class="bg-white rounded-2xl shadow-md p-6">
-        <h2 class="font-bold text-xl text-primary-700 mb-4">MŠ Na Korábě</h2>
-        <dl class="space-y-3 text-sm">
-          <div>
-            <dt class="text-gray-500 font-medium">Adresa</dt>
-            <dd class="text-gray-700">Na Korábě 2/350, 180 00 Praha 8 – Libeň</dd>
-          </div>
-          <div>
-            <dt class="text-gray-500 font-medium">Telefon</dt>
-            <dd class="text-gray-700"><a href="tel:+420283842809" class="text-primary-500 hover:underline">+420 283 842 809</a></dd>
-          </div>
-          <div>
-            <dt class="text-gray-500 font-medium">Omluvy dětí</dt>
-            <dd class="text-gray-700"><a href="mailto:skolkanakorabeomluvydeti@seznam.cz" class="text-primary-500 hover:underline">skolkanakorabeomluvydeti@seznam.cz</a></dd>
-          </div>
-          <div>
-            <dt class="text-gray-500 font-medium">Jídelna</dt>
-            <dd class="text-gray-700"><a href="tel:+420283843286" class="text-primary-500 hover:underline">+420 283 843 286</a></dd>
-          </div>
-        </dl>
-      </div>
-
-      <!-- Lindnerova -->
-      <div class="bg-white rounded-2xl shadow-md p-6">
-        <h2 class="font-bold text-xl text-primary-700 mb-4">MŠ Lindnerova</h2>
-        <dl class="space-y-3 text-sm">
-          <div>
-            <dt class="text-gray-500 font-medium">Adresa</dt>
-            <dd class="text-gray-700">Lindnerova 1/575, 180 00 Praha 8 – Libeň</dd>
-          </div>
-          <div>
-            <dt class="text-gray-500 font-medium">Telefon</dt>
-            <dd class="text-gray-700"><a href="tel:+420284842026" class="text-primary-500 hover:underline">+420 284 842 026</a></dd>
-          </div>
-          <div>
-            <dt class="text-gray-500 font-medium">Email</dt>
-            <dd class="text-gray-700"><a href="mailto:mslindnerova@seznam.cz" class="text-primary-500 hover:underline">mslindnerova@seznam.cz</a></dd>
-          </div>
-          <div>
-            <dt class="text-gray-500 font-medium">Jídelna</dt>
-            <dd class="text-gray-700"><a href="tel:+420284840029" class="text-primary-500 hover:underline">+420 284 840 029</a></dd>
-          </div>
-        </dl>
-      </div>
+      {s.buildings.map(b => (
+        <div class="bg-white rounded-2xl shadow-md p-6">
+          <h2 class="font-bold text-xl text-primary-700 mb-4">{b.name}</h2>
+          <dl class="space-y-3 text-sm">
+            <div>
+              <dt class="text-gray-500 font-medium">Adresa</dt>
+              <dd class="text-gray-700">{b.address}</dd>
+            </div>
+            <div>
+              <dt class="text-gray-500 font-medium">Telefon</dt>
+              <dd class="text-gray-700"><a href={`tel:${b.phone.replace(/\s/g, '')}`} class="text-primary-500 hover:underline">{b.phone}</a></dd>
+            </div>
+            {b.email && (
+              <div>
+                <dt class="text-gray-500 font-medium">{b.email.includes('omluvy') ? 'Omluvy dětí' : 'Email'}</dt>
+                <dd class="text-gray-700"><a href={`mailto:${b.email}`} class="text-primary-500 hover:underline">{b.email}</a></dd>
+              </div>
+            )}
+            <div>
+              <dt class="text-gray-500 font-medium">Jídelna</dt>
+              <dd class="text-gray-700"><a href={`tel:${b.cafeteria_phone.replace(/\s/g, '')}`} class="text-primary-500 hover:underline">{b.cafeteria_phone}</a></dd>
+            </div>
+          </dl>
+        </div>
+      ))}
     </div>
 
     <!-- Management -->

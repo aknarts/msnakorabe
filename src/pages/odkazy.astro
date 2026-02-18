@@ -13,14 +13,12 @@ const budgetDocs = (await getCollection('documents'))
 const linksByCategory = {
   portal: allLinks.filter(l => l.data.category === 'portal'),
   municipality: allLinks.filter(l => l.data.category === 'municipality'),
-  budget: allLinks.filter(l => l.data.category === 'budget'),
   regulation: allLinks.filter(l => l.data.category === 'regulation'),
 };
 
 const categoryLabels: Record<string, string> = {
   portal: 'Portály',
   municipality: 'Městská část',
-  budget: 'Rozpočtové dokumenty',
   regulation: 'Předpisy',
 };
 ---

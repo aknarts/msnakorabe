@@ -77,7 +77,7 @@ const classesByBuilding = (name: string) => classes.filter(c => c.data.building 
                 {bClasses.length > 0 && (
                   <div class="flex flex-wrap gap-2">
                     {bClasses.map(c => (
-                      <a href={url('/tridy')} class="inline-flex items-center gap-1 text-sm bg-primary-50 text-primary-700 px-2.5 py-1 rounded-lg hover:bg-primary-100 transition-colors">
+                      <a href={url(`/tridy#${c.id}`)} class="inline-flex items-center gap-1 text-sm bg-primary-50 text-primary-700 px-2.5 py-1 rounded-lg hover:bg-primary-100 transition-colors">
                         <span>{c.data.emoji}</span>
                         <span>{c.data.class_name}</span>
                       </a>

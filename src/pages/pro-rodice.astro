@@ -6,6 +6,7 @@ import { url } from '../utils';
 import { getCollection, render } from 'astro:content';
 
 const announcements = (await getCollection('announcements'))
+  .filter(a => a.data.active)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const faqItems = (await getCollection('faq'))
