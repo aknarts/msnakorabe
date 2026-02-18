@@ -1,0 +1,167 @@
+- id: akce-2025-2026
+  filename: "akce-2025-2026.pdf"
+  title: "Plán akcí na školní rok 2025/2026"
+  category: rules
+  active: true
+
+- id: zadost-o-prijeti
+  filename: "zadost-o-prijeti.pdf"
+  title: "Žádost o přijetí"
+  category: enrollment
+  active: true
+
+- id: evidencni-list
+  filename: "evidencni-list.pdf"
+  title: "Evidenční list"
+  category: enrollment
+  active: true
+
+- id: kriteria-prijeti
+  filename: "kriteria-prijeti.pdf"
+  title: "Kritéria pro přijetí"
+  category: enrollment
+  active: true
+
+- id: moznosti-podani-prihlasky
+  filename: "moznosti-podani-prihlasky.pdf"
+  title: "Možnosti podání přihlášky"
+  category: enrollment
+  active: true
+
+- id: informativni-dopis-zapisy
+  filename: "Informativni_dopis_k_zapisum_pro_skolni_rok_2026_2027.pdf"
+  title: "Informativní dopis k zápisům pro školní rok 2026/2027"
+  category: enrollment
+  active: true
+
+- id: skolni-rad-2025
+  filename: "skolni-rad-2025.pdf"
+  title: "Školní řád 2025"
+  category: rules
+  active: true
+
+- id: svp-2025-2027
+  filename: "svp-2025-2027.pdf"
+  title: "Školní vzdělávací program 2025–2027"
+  category: rules
+  active: true
+
+- id: formular-pozdni-prichody
+  filename: "formular-pozdni-prichody.pdf"
+  title: "Formulář pozdní příchody"
+  category: rules
+  active: true
+
+- id: zastupovani-rodicu
+  filename: "zastupovani-rodicu.pdf"
+  title: "Zastupování rodičů jinými osobami"
+  category: rules
+  active: true
+
+- id: dohoda-leky
+  filename: "dohoda-leky.pdf"
+  title: "Dohoda — léky"
+  category: rules
+  active: true
+
+- id: dohoda-nezletily-sourozenec
+  filename: "dohoda-nezletily-sourozenec.pdf"
+  title: "Dohoda o převzetí dítěte nezletilým sourozencem"
+  category: rules
+  active: true
+
+- id: posudek-zdravotni-zpusobilost
+  filename: "posudek-zdravotni-zpusobilost.pdf"
+  title: "Posudek o zdravotní způsobilosti"
+  category: rules
+  active: true
+
+- id: zadost-prominuti-skolneho
+  filename: "zadost-prominuti-skolneho.pdf"
+  title: "Žádost o prominutí školného 2025/2026"
+  category: rules
+  active: true
+
+- id: usneseni-rady-skolne
+  filename: "usneseni-rady-skolne.pdf"
+  title: "Usnesení Rady MČ P8 o výši školného"
+  category: rules
+  active: true
+
+- id: cestne-prohlaseni-stravovani
+  filename: "cestne-prohlaseni-stravovani-2025.pdf"
+  title: "Čestné prohlášení k bezplatnému stravování"
+  category: rules
+  active: true
+
+- id: sablony-op-jak
+  filename: "sablony-op-jak.pdf"
+  title: "Zapojení do projektu Šablony OP JAK"
+  category: rules
+  active: true
+
+- id: plakat-publicita
+  filename: "plakat-publicita.pdf"
+  title: "Potravinová pomoc dětem — plakát"
+  category: rules
+  active: true
+
+- id: svpr-prihlaska-kitty
+  filename: "svpr-prihlaska-kitty.pdf"
+  title: "Přihláška — Kitty"
+  category: nature-school
+  active: true
+
+- id: svpr-prihlaska-cestice
+  filename: "svpr-prihlaska-cestice.pdf"
+  title: "Přihláška — Čestice"
+  category: nature-school
+  active: true
+
+- id: svpr-bezinfekcnost-kitty
+  filename: "svpr-bezinfekcnost-kitty.pdf"
+  title: "Bezinfekčnost — Kitty"
+  category: nature-school
+  active: true
+
+- id: svpr-seznam-veci
+  filename: "svpr-seznam-veci.pdf"
+  title: "Seznam věcí"
+  category: nature-school
+  active: true
+
+- id: svpr-zdravotni-dotaznik
+  filename: "svpr-zdravotni-dotaznik.pdf"
+  title: "Zdravotní dotazník"
+  category: nature-school
+  active: true
+
+- id: gdpr-smernice
+  filename: "gdpr-smernice.pdf"
+  title: "Směrnice ochrany osobních údajů"
+  category: gdpr
+  active: true
+
+- id: gdpr-doplnujici
+  filename: "gdpr-doplnujici.zip"
+  title: "Doplňující dokumenty"
+  category: gdpr
+  active: true
+
+- id: rozpocet-2025-schvaleny
+  filename: "rozpocet-2025-schvaleny.pdf"
+  title: "Schválený rozpočet na rok 2025"
+  category: budget
+  active: true
+
+- id: navrh-rozpoctu-2025-2027
+  filename: "navrh-rozpoctu-2025-2027.pdf"
+  title: "Návrh rozpočtu 2025 a střednědobý výhled 2026–2027"
+  category: budget
+  active: true
+
+- id: strednedoby-vyhled-2026-2028
+  filename: "strednedoby-vyhled-2026-2028.pdf"
+  title: "Střednědobý výhled 2026–2028"
+  category: budget
+  active: true

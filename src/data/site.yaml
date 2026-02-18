@@ -1,0 +1,74 @@
+- id: main
+  name: "Mateřská škola, Praha 8, Na Korábě 2"
+  short_name: "MŠ Na Korábě"
+  ico: "70919747"
+  data_box: "z7ikxu2"
+  founder:
+    name: "Městská část Praha 8"
+    url: "https://www.praha8.cz"
+  motto: "Jak si loďku postavíme, tak si na ní zajezdíme."
+  philosophy: >-
+    Uspokojovat potřeby dětí, nabízet podněty pro rozvoj individuálního potenciálu,
+    intelektuálních, citových a sociálních schopností. Umožnit dítěti prostřednictvím
+    prožitků získávat zkušenost, probouzet zájem o hodnoty, vést dítě k osvojení postojů
+    a dovedností, které budou dobrým základem do života, které pomohou dosáhnout cíle =
+    stát se zdravou, autentickou, vnitřně integrovanou a socializovanou osobností.
+  goal: "MÍT ZDRAVÍ, DUŠEVNÍ POHODU A PŘÍZNIVOU ŽIVOTNÍ PERSPEKTIVU"
+  intro: >-
+    Naše mateřská škola je loďka, kterou stavíme z pevných, ale pružných základů.
+    Tak, jak si na její stavbě dáme záležet, tak nám bude sloužit. Krásně nás poveze
+    v klidném proudu, ale vydrží i v bouři a bezpečně nás doveze k našemu cíli.
+  school_type: >-
+    Naše mateřské školy jsou školou rodinného typu, mezi naše hlavní oblasti zájmů
+    patří mravní, citová a tělesná výchova. Snažíme se v dětech posilovat vlastní
+    sebedůvěru, samostatnost a schopnost rozhodování se, vše maximálně hravou formou.
+  program_name: "NA JEDNÉ LODI – KORÁBU"
+  program_description: >-
+    Pro sjednocení těchto aktivit a dosažení našich cílů jsme vytvořili vlastní
+    vzdělávací program „NA JEDNÉ LODI – KORÁBU", který děti provází po celý rok.
+  garden: >-
+    Školka nabízí prostornou zahradu parkového typu, jejíž členitost umožňuje využití
+    k funkčním, estetickým a prožitkovým variantám výchovných činností a je vybavena
+    moderními herními prvky a nově také záhonky s plodinami, o které se děti samy starají.
+  kitchen_description: >-
+    Stravování dětí zajišťují školní jídelny. Snažíme se dětem poskytovat pestrou
+    a vyváženou stravu, k čemuž dopomáhají špičkové paní kuchařky.
+  kitchen_awards:
+    - '1. místo v soutěži „Školní jídelna chutně a zdravě" pořádané HHMP (2016/2017)'
+    - '4× finále celostátní soutěže „O nejlepší školní oběd"'
+    - '4. místo z 90 týmů školních jídelen z celé ČR (2013)'
+    - 'Cena veřejnosti (2014)'
+  hours: "6:30 / 7:00 – 17:00"
+  hours_note: >-
+    Děti splňující povinnou předškolní docházku přichází do MŠ od 7:00 do 9:00 hodin.
+    Doporučujeme příchod do 8:30 hodin, kdy začínají pro děti různé aktivity a řízené činnosti.
+  absence_email: "skolkanakorabeomluvydeti@seznam.cz"
+  moodle_url: "http://dlk.cuni.cz/course/view.php?id=98"
+  moodle_description: >-
+    Pro rodiče a pedagogický personál máme informační portál Moodle, kde jsou uloženy
+    všechny potřebné informace o aktuálním dění v mateřské škole. Rodiče mají možnost
+    být ve stálé interakci s pedagogy i mezi sebou. Portál dále slouží jako neomezené
+    úložiště pro metodické, didaktické a odborné materiály, ke kterým mají rodiče
+    neomezený přístup.
+  virtual_tour_url: "http://www.virtualni-skoly.cz/skola/90-ms-na-korabe"
+  buildings:
+    - name: "MŠ Na Korábě"
+      address: "Na Korábě 2/350, 180 00 Praha 8 – Libeň"
+      phone: "+420 283 842 809"
+      email: "skolkanakorabeomluvydeti@seznam.cz"
+      cafeteria_phone: "+420 283 843 286"
+      image: "/images/img4D.jpg"
+      garden: >-
+        Prostorná zahrada parkového typu, jejíž členitost umožňuje využití
+        k funkčním, estetickým a prožitkovým variantám výchovných činností.
+        Je vybavena moderními herními prvky a záhonky s plodinami,
+        o které se děti samy starají.
+    - name: "MŠ Lindnerova"
+      address: "Lindnerova 1/575, 180 00 Praha 8 – Libeň"
+      phone: "+420 284 842 026"
+      email: "mslindnerova@seznam.cz"
+      cafeteria_phone: "+420 284 840 029"
+      image: "/images/img4E.jpg"
+      garden: >-
+        Menší zahrada s herními prvky. Děti pravidelně využívají i nedaleké
+        parky a hřiště v okolí.

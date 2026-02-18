@@ -1,0 +1,39 @@
+- id: moodle
+  title: "Informační systém MOODLE"
+  url: "http://dlk.cuni.cz/course/view.php?id=98"
+  description: "Informační portál pro rodiče"
+  category: portal
+  order: 1
+  active: true
+
+- id: fotogalerie
+  title: "Galerie fotografií na portálu Rajče"
+  url: "http://msnakorabe.rajce.idnes.cz/"
+  description: "Fotky z akcí a života školky"
+  category: portal
+  order: 2
+  active: true
+
+- id: praha8
+  title: "Městská část Praha 8"
+  url: "https://www.praha8.cz"
+  description: "Web zřizovatele"
+  category: municipality
+  order: 3
+  active: true
+
+- id: rozpocet-mc-2025
+  title: "Návrh rozpočtu MČ P8 na rok 2025 a střednědobý výhled do roku 2030"
+  url: "https://www.praha8.cz/Navrh-Rozpoctu-mestske-casti-Praha-8-na-rok-2025-a-strednedoby-vyhled-do-roku-2030.html"
+  description: "Rozpočet zřizovatele"
+  category: budget
+  order: 4
+  active: true
+
+- id: skolske-obvody
+  title: "Obecně závazná vyhláška o školských obvodech MŠ"
+  url: "https://www.prahaskolska.eu/mhmp-post/obecne-zavazna-vyhlaska-hlavniho-mesta-prahy-o-skolskych-obvodech-materskych-skol/"
+  description: "Spádové obvody mateřských škol"
+  category: regulation
+  order: 5
+  active: true

@@ -1,0 +1,108 @@
+- id: director
+  section: management
+  name: "Mgr. Hana Francová"
+  title: "Ředitelka školy"
+  phone: "+420 728 125 539"
+  email: "reditelka@msnakorabe.cz"
+
+- id: deputy
+  section: management
+  name: "Jana Paříková"
+  title: "Zástupkyně ředitelky, vedoucí učitelka MŠ Lindnerova"
+  phone: "+420 739 643 387"
+  email: "zastupkyne@msnakorabe.cz"
+
+- id: cafeteria-manager
+  section: management
+  name: "Mgr. Lucie Francová"
+  title: "Vedoucí školní jídelny"
+  email: "hospodarka@msnakorabe.cz"
+
+- id: lvicatka
+  section: classes
+  class_name: "Lvíčatka"
+  emoji: "🦁"
+  building: "Na Korábě"
+  teachers:
+    - name: "Čechová Kateřina, DiS."
+      role: "třídní učitelka"
+    - name: "Mgr. Francová Hana"
+      role: null
+    - name: "Bc. Nájemníková Kateřina"
+      role: null
+
+- id: hrosici
+  section: classes
+  class_name: "Hrošíci"
+  emoji: "🦛"
+  building: "Na Korábě"
+  teachers:
+    - name: "Tůmová Ivana"
+      role: "třídní učitelka"
+    - name: "Bc. Zdařilová Veronika"
+      role: null
+
+- id: opicky
+  section: classes
+  class_name: "Opičky"
+  emoji: "🐒"
+  building: "Na Korábě"
+  teachers:
+    - name: "Piotrowská Jitka"
+      role: "třídní učitelka"
+    - name: "Šlanhofová Lenka"
+      role: null
+
+- id: slnicka
+  section: classes
+  class_name: "Sluníčka"
+  emoji: "☀️"
+  building: "Lindnerova"
+  teachers:
+    - name: "Tichá Kateřina"
+      role: "třídní učitelka"
+    - name: "Kubíková Andrea"
+      role: null
+
+- id: berusky
+  section: classes
+  class_name: "Berušky"
+  emoji: "🐞"
+  building: "Lindnerova"
+  teachers:
+    - name: "Paříková Jana"
+      role: "třídní učitelka"
+    - name: "Rašková Ester"
+      role: null
+    - name: "Lonská Jana"
+      role: "asistent pedagoga"
+
+- id: kitchen-korab
+  section: kitchen
+  building: "MŠ Na Korábě"
+  staff:
+    - name: "Horňáková Kristina"
+      role: "vedoucí kuchařka"
+    - name: "Gunárová Kristina"
+      role: "kuchařka"
+
+- id: kitchen-lindnerova
+  section: kitchen
+  building: "MŠ Lindnerova"
+  staff:
+    - name: "Větrovcová Markéta"
+      role: "vedoucí kuchařka"
+    - name: "Palmová Daniela"
+      role: "kuchařka"
+
+- id: other-staff
+  section: other
+  staff:
+    - name: "Brousilová Soňa"
+      role: "školnice"
+    - name: "Hrymut Oksana"
+      role: "uklízečka"
+    - name: "Malon Vitalia"
+      role: "uklízečka"
+    - name: "Spilková Stanislava"
+      role: "uklízečka"
