@@ -40,8 +40,12 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="border-t border-primary-600 mt-8 pt-6 text-center text-xs text-primary-300">
-      &copy; {currentYear} Mateřská škola, Praha 8, Na Korábě 2 &middot; IČO: 70919747
+    <div class="border-t border-primary-600 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-primary-300">
+      <p>&copy; {currentYear} Mateřská škola, Praha 8, Na Korábě 2 &middot; IČO: 70919747</p>
+      <a href="https://www.praha8.cz" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-white transition-colors">
+        <span>Zřizovatel:</span>
+        <img src={url('/images/praha8-logo.png')} alt="Městská část Praha 8" class="h-6" />
+      </a>
     </div>
   </div>
 </footer>
