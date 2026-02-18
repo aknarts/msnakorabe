@@ -17,6 +17,51 @@ const allAnnouncements = (await getCollection('announcements'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const announcements = allAnnouncements.slice(0, 3);
 const hasMore = allAnnouncements.length > 3;
+
+const rand = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+const pick = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
+
+const cloudTints = [
+  'rgba(255,255,255',    // white
+  'rgba(224,242,254',    // sky-100
+  'rgba(186,230,253',    // sky-200
+  'rgba(254,243,199',    // warm yellow
+  'rgba(237,233,254',    // soft lavender
+];
+
+const heroCount = rand(4, 6);
+const heroPlaced: { top: number; left: number }[] = [];
+const MIN_DIST_TOP = 20;
+const MIN_DIST_LEFT = 25;
+
+function tooCloseToExisting(top: number, left: number): boolean {
+  return heroPlaced.some(p => Math.abs(p.top - top) < MIN_DIST_TOP && Math.abs(p.left - left) < MIN_DIST_LEFT);
+}
+
+interface HeroCloud {
+  top: string; left: string; scale: string; blur: number; opacity: string; color: string;
+}
+const heroClouds: HeroCloud[] = [];
+
+for (let i = 0; i < heroCount; i++) {
+  let top = rand(0, 80);
+  let left = rand(-10, 75);
+  let attempts = 0;
+  while (tooCloseToExisting(top, left) && attempts < 20) {
+    top = rand(0, 80);
+    left = rand(-10, 75);
+    attempts++;
+  }
+  heroPlaced.push({ top, left });
+  heroClouds.push({
+    top: `${top}%`,
+    left: `${left}%`,
+    scale: (rand(6, 18) / 10).toFixed(1),
+    blur: rand(3, 10),
+    opacity: (rand(8, 18) / 100).toFixed(2),
+    color: `${pick(cloudTints)},1)`,
+  });
+}
 ---
 
 <BaseLayout title="MŠ Na Korábě | Mateřská škola Praha 8">
@@ -31,6 +76,14 @@ const hasMore = allAnnouncements.length > 3;
     <img src={url('/images/sun2a.gif')} alt="" class="absolute -top-4 right-6 md:right-20 w-16 md:w-24 opacity-40 pointer-events-none" aria-hidden="true" />
     <img src={url('/images/sun1a.gif')} alt="" class="absolute top-1/3 -left-6 md:-left-8 w-20 md:w-28 opacity-35 pointer-events-none" aria-hidden="true" />
     <img src={url('/images/sun2a.gif')} alt="" class="absolute bottom-8 -right-6 md:-right-8 w-24 md:w-32 opacity-30 pointer-events-none hidden sm:block" aria-hidden="true" />
+    <!-- Hero clouds -->
+    {heroClouds.map(c => (
+      <div
+        class="hero-cloud absolute pointer-events-none"
+        style={`top:${c.top};left:${c.left};transform:scale(${c.scale});filter:blur(${c.blur}px);opacity:${c.opacity};--cloud-color:${c.color}`}
+        aria-hidden="true"
+      />
+    ))}
     <div class="relative max-w-6xl mx-auto px-4 pt-8 pb-12 md:pt-12 md:pb-16">
       <div class="grid md:grid-cols-2 gap-10 items-center">
         <div>
@@ -112,8 +165,8 @@ const hasMore = allAnnouncements.length > 3;
         />
         <FeatureCard
           image="/images/img54.jpg"
-          title="Parková zahrada"
-          description={s.garden}
+          title="Školní zahrady"
+          description="Obě pracoviště mají zahrady s herními prvky. Na Korábě navíc prostorná zahrada parkového typu se záhonky."
         />
         <FeatureCard
           image="/images/img56.jpg"

@@ -1,0 +1,104 @@
+---
+const rand = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+const pick = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
+
+const count = rand(5, 8);
+
+const cloudColors = [
+  'rgba(255,255,255',    // white
+  'rgba(224,242,254',    // sky-100
+  'rgba(186,230,253',    // sky-200
+  'rgba(254,243,199',    // warm yellow
+  'rgba(237,233,254',    // soft lavender
+];
+
+const MIN_DIST_TOP = 12;
+const MIN_DIST_LEFT = 20;
+const placed: { top: number; left: number }[] = [];
+
+function tooClose(top: number, left: number): boolean {
+  return placed.some(p => Math.abs(p.top - top) < MIN_DIST_TOP && Math.abs(p.left - left) < MIN_DIST_LEFT);
+}
+
+interface CloudItem {
+  top: string; left: string; scale: string; blur: number; opacity: string; color: string;
+}
+const clouds: CloudItem[] = [];
+
+// Distribute across vertical zones for even coverage
+const zones = [0, 15, 30, 45, 60, 75, 85, 95];
+
+for (let i = 0; i < count; i++) {
+  const zoneStart = zones[i % zones.length];
+  const zoneEnd = zoneStart + 14;
+
+  let top = rand(zoneStart, Math.min(zoneEnd, 95));
+  let left = rand(-10, 80);
+  let attempts = 0;
+  while (tooClose(top, left) && attempts < 20) {
+    top = rand(zoneStart, Math.min(zoneEnd, 95));
+    left = rand(-10, 80);
+    attempts++;
+  }
+  placed.push({ top, left });
+
+  clouds.push({
+    top: `${top}%`,
+    left: `${left}%`,
+    scale: (rand(8, 18) / 10).toFixed(1),
+    blur: rand(6, 14),
+    opacity: (rand(4, 10) / 100).toFixed(2),
+    color: `${pick(cloudColors)},1)`,
+  });
+}
+---
+
+<div class="bg-clouds" aria-hidden="true">
+  {clouds.map(c => (
+    <div
+      class="cloud"
+      style={`top:${c.top};left:${c.left};transform:scale(${c.scale});filter:blur(${c.blur}px);opacity:${c.opacity};--cloud-color:${c.color}`}
+    />
+  ))}
+</div>
+
+<style>
+  .bg-clouds {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .cloud {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    background: var(--cloud-color, white);
+    border-radius: 50px;
+    pointer-events: none;
+  }
+
+  .cloud::before,
+  .cloud::after {
+    content: '';
+    position: absolute;
+    background: var(--cloud-color, white);
+    border-radius: 50%;
+  }
+
+  .cloud::before {
+    width: 100px;
+    height: 80px;
+    top: -35px;
+    left: 25px;
+  }
+
+  .cloud::after {
+    width: 130px;
+    height: 90px;
+    top: -40px;
+    right: 25px;
+  }
+</style>

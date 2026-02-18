@@ -46,14 +46,6 @@
   body {
     @apply font-sans text-gray-800 antialiased;
     background-color: var(--color-warm-50);
-    background-image:
-      radial-gradient(ellipse 600px 200px at 10% 15%, rgba(186, 230, 253, 0.25), transparent),
-      radial-gradient(ellipse 500px 180px at 85% 8%, rgba(186, 230, 253, 0.2), transparent),
-      radial-gradient(ellipse 700px 150px at 50% 35%, rgba(224, 242, 254, 0.2), transparent),
-      radial-gradient(ellipse 400px 160px at 75% 55%, rgba(186, 230, 253, 0.15), transparent),
-      radial-gradient(ellipse 550px 170px at 20% 70%, rgba(224, 242, 254, 0.18), transparent),
-      radial-gradient(ellipse 450px 140px at 60% 85%, rgba(186, 230, 253, 0.12), transparent);
-    background-attachment: fixed;
   }
 
   h1, h2, h3, h4 {
@@ -76,4 +68,34 @@
 
 .wave-divider-flip {
   transform: rotate(180deg);
+}
+
+.hero-cloud {
+  width: 200px;
+  height: 60px;
+  background: var(--cloud-color, white);
+  border-radius: 50px;
+  pointer-events: none;
+}
+
+.hero-cloud::before,
+.hero-cloud::after {
+  content: '';
+  position: absolute;
+  background: var(--cloud-color, white);
+  border-radius: 50%;
+}
+
+.hero-cloud::before {
+  width: 100px;
+  height: 80px;
+  top: -35px;
+  left: 25px;
+}
+
+.hero-cloud::after {
+  width: 130px;
+  height: 90px;
+  top: -40px;
+  right: 25px;
 }
