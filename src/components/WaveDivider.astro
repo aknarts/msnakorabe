@@ -1,0 +1,14 @@
+---
+interface Props {
+  color?: string;
+  flip?: boolean;
+}
+
+const { color = '#fdf8f0', flip = false } = Astro.props;
+---
+
+<div class:list={['wave-divider', { 'wave-divider-flip': flip }]}>
+  <svg viewBox="0 0 1200 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,24 C200,48 400,0 600,24 C800,48 1000,0 1200,24 L1200,48 L0,48 Z" fill={color} />
+  </svg>
+</div>

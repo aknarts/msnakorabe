@@ -1,0 +1,112 @@
+---
+import { url } from '../utils';
+
+const suns = [
+  '/images/sun1a.gif',
+  '/images/sun2a.gif',
+];
+
+const rand = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+const pick = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
+const coin = () => Math.random() > 0.5;
+
+const count = rand(3, 6);
+const sides = ['left', 'right'] as const;
+const sizes = ['w-10 md:w-14', 'w-12 md:w-16', 'w-14 md:w-20', 'w-16 md:w-24'];
+
+const tints = [
+  'none',
+  'hue-rotate(15deg) saturate(1.2)',
+  'hue-rotate(-20deg) saturate(1.1)',
+  'hue-rotate(40deg) saturate(0.9)',
+  'hue-rotate(-40deg) saturate(1.3)',
+  'sepia(0.3) saturate(1.4)',
+];
+
+const MIN_DISTANCE = 15;
+const placed: { top: number; sideIdx: number }[] = [];
+
+function tooClose(top: number, sideIdx: number): boolean {
+  return placed.some(p => p.sideIdx === sideIdx && Math.abs(p.top - top) < MIN_DISTANCE);
+}
+
+interface SunItem {
+  src: string;
+  top: string;
+  side: 'left' | 'right';
+  offset: string;
+  size: string;
+  transforms: string;
+  filter: string;
+  opacity: string;
+}
+
+const items: SunItem[] = [];
+
+for (let i = 0; i < count; i++) {
+  const sideIdx = i % 2;
+  const side = sides[sideIdx];
+
+  let top = rand(5, 92);
+  let attempts = 0;
+  while (tooClose(top, sideIdx) && attempts < 20) {
+    top = rand(5, 92);
+    attempts++;
+  }
+
+  placed.push({ top, sideIdx });
+
+  const flipX = coin();
+  const flipY = coin();
+  const rotate = rand(-25, 25);
+  const tint = pick(tints);
+
+  const transforms = [
+    `rotate(${rotate}deg)`,
+    flipX ? 'scaleX(-1)' : '',
+    flipY ? 'scaleY(-1)' : '',
+  ].filter(Boolean).join(' ');
+
+  items.push({
+    src: pick(suns),
+    top: `${top}%`,
+    side,
+    offset: `${rand(0, 4)}%`,
+    size: pick(sizes),
+    transforms,
+    filter: tint === 'none' ? '' : tint,
+    opacity: (rand(10, 20) / 100).toFixed(2),
+  });
+}
+---
+
+<div class="floating-suns" aria-hidden="true">
+  {items.map(item => {
+    const filterPart = item.filter ? `filter:${item.filter};` : '';
+    return (
+      <img
+        src={url(item.src)}
+        alt=""
+        class={`floating-sun ${item.size}`}
+        style={`top:${item.top};${item.side}:${item.offset};transform:${item.transforms};opacity:${item.opacity};${filterPart}`}
+        loading="lazy"
+      />
+    );
+  })}
+</div>
+
+<style>
+  .floating-suns {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .floating-sun {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+  }
+</style>
