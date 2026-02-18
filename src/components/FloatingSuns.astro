@@ -57,14 +57,12 @@ for (let i = 0; i < count; i++) {
   placed.push({ top, sideIdx });
 
   const flipX = coin();
-  const flipY = coin();
-  const rotate = rand(-25, 25);
+  const rotate = rand(-8, 8);
   const tint = pick(tints);
 
   const transforms = [
     `rotate(${rotate}deg)`,
     flipX ? 'scaleX(-1)' : '',
-    flipY ? 'scaleY(-1)' : '',
   ].filter(Boolean).join(' ');
 
   items.push({
