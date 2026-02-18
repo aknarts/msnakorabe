@@ -2,6 +2,7 @@
 title: "Zápis k předškolnímu vzdělávání 2026/2027"
 date: 2026-01-14
 priority: "urgent"
+pinned: true
 active: true
 ---
 

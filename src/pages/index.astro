@@ -15,8 +15,11 @@ const director = personnelEntries.find(p => p.id === 'director')?.data;
 const allAnnouncements = (await getCollection('announcements'))
   .filter(a => a.data.active)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const announcements = allAnnouncements.slice(0, 3);
-const hasMore = allAnnouncements.length > 3;
+
+const pinned = allAnnouncements.filter(a => a.data.pinned);
+const recent = allAnnouncements.filter(a => !a.data.pinned).slice(0, 3);
+const announcements = [...pinned, ...recent];
+const hasMore = allAnnouncements.length > announcements.length;
 
 const rand = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 const pick = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
@@ -132,6 +135,7 @@ for (let i = 0; i < heroCount; i++) {
               title={announcement.data.title}
               date={announcement.data.date}
               priority={announcement.data.priority}
+              pinned={announcement.data.pinned}
             >
               <Content />
             </AnnouncementCard>

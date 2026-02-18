@@ -8,6 +8,7 @@ const announcements = defineCollection({
     title: z.string(),
     date: z.date(),
     priority: z.enum(['normal', 'high', 'urgent']).default('normal'),
+    pinned: z.boolean().default(false),
     active: z.boolean().default(true),
   }),
 });
