@@ -7,11 +7,32 @@ import { getCollection, render } from 'astro:content';
 
 const announcements = (await getCollection('announcements'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const faqItems = (await getCollection('faq'))
+  .filter(f => f.data.active)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const allDocs = (await getCollection('documents'))
+  .filter(d => d.data.active);
+
+const docsByCategory = {
+  enrollment: allDocs.filter(d => d.data.category === 'enrollment'),
+  rules: allDocs.filter(d => d.data.category === 'rules'),
+  'nature-school': allDocs.filter(d => d.data.category === 'nature-school'),
+  gdpr: allDocs.filter(d => d.data.category === 'gdpr'),
+};
+
+const categoryLabels: Record<string, string> = {
+  enrollment: 'Přijímací řízení 2026/2027',
+  rules: 'Školní řád a formuláře',
+  'nature-school': 'Školka v přírodě',
+  gdpr: 'Ochrana osobních údajů',
+};
 ---
 
 <BaseLayout title="Pro rodiče | MŠ Na Korábě" description="Informace pro rodiče — dokumenty ke stažení, často kladené otázky, aktuality MŠ Na Korábě.">
   <!-- Page header -->
-  <section class="bg-gradient-to-r from-primary-50 to-sky-50 py-10">
+  <section class="bg-gradient-to-r from-accent-50 to-sky-50 py-10">
     <div class="max-w-6xl mx-auto px-4">
       <h1 class="text-3xl md:text-4xl font-bold text-primary-700">Pro rodiče</h1>
       <p class="text-gray-600 mt-2">Dokumenty, aktuality a odpovědi na vaše otázky</p>
@@ -24,7 +45,7 @@ const announcements = (await getCollection('announcements'))
       <a href="#aktuality" class="text-sm bg-primary-100 text-primary-700 px-3 py-1.5 rounded-lg hover:bg-primary-200 transition-colors">Aktuality</a>
       <a href="#dokumenty" class="text-sm bg-primary-100 text-primary-700 px-3 py-1.5 rounded-lg hover:bg-primary-200 transition-colors">Dokumenty</a>
       <a href="#faq" class="text-sm bg-primary-100 text-primary-700 px-3 py-1.5 rounded-lg hover:bg-primary-200 transition-colors">Časté otázky</a>
-      <a href="#odkazy" class="text-sm bg-primary-100 text-primary-700 px-3 py-1.5 rounded-lg hover:bg-primary-200 transition-colors">Užitečné odkazy</a>
+      <a href={url('/odkazy')} class="text-sm bg-primary-100 text-primary-700 px-3 py-1.5 rounded-lg hover:bg-primary-200 transition-colors">Užitečné odkazy</a>
     </nav>
   </div>
 
@@ -56,210 +77,35 @@ const announcements = (await getCollection('announcements'))
     <!-- Documents -->
     <section id="dokumenty">
       <h2 class="text-2xl font-bold text-primary-700 mb-6">Dokumenty ke stažení</h2>
-
-      <!-- Enrollment -->
-      <div class="mb-8">
-        <h3 class="font-bold text-primary-700 mb-3 text-lg">Přijímací řízení 2026/2027</h3>
-        <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href={url('/documents/zadost-o-prijeti.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Žádost o přijetí</span>
-          </a>
-          <a href={url('/documents/evidencni-list.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Evidenční list</span>
-          </a>
-          <a href={url('/documents/kriteria-prijeti.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Kritéria pro přijetí</span>
-          </a>
-          <a href={url('/documents/moznosti-podani-prihlasky.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Možnosti podání přihlášky</span>
-          </a>
+      {Object.entries(docsByCategory).map(([cat, docs]) => docs.length > 0 && (
+        <div class="mb-8">
+          <h3 class="font-bold text-primary-700 mb-3 text-lg">{categoryLabels[cat]}</h3>
+          <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
+            {docs.map(doc => (
+              <a href={url(`/documents/${doc.data.filename}`)} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
+                <span class={`shrink-0 ${doc.data.filename.endsWith('.zip') ? 'text-blue-500' : 'text-red-500'}`}>
+                  {doc.data.filename.endsWith('.zip') ? 'ZIP' : 'PDF'}
+                </span>
+                <span class="text-gray-700 text-sm">{doc.data.title}</span>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <!-- School rules -->
-      <div class="mb-8">
-        <h3 class="font-bold text-primary-700 mb-3 text-lg">Školní řád a formuláře</h3>
-        <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href={url('/documents/skolni-rad-2025.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Školní řád 2025</span>
-          </a>
-          <a href={url('/documents/svp-2025-2027.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Školní vzdělávací program 2025–2027</span>
-          </a>
-          <a href={url('/documents/formular-pozdni-prichody.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Formulář pozdní příchody</span>
-          </a>
-          <a href={url('/documents/zastupovani-rodicu.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Zastupování rodičů jinými osobami</span>
-          </a>
-          <a href={url('/documents/dohoda-leky.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Dohoda — léky</span>
-          </a>
-          <a href={url('/documents/dohoda-nezletily-sourozenec.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Dohoda o převzetí dítěte nezletilým sourozencem</span>
-          </a>
-          <a href={url('/documents/posudek-zdravotni-zpusobilost.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Posudek o zdravotní způsobilosti</span>
-          </a>
-          <a href={url('/documents/zadost-prominuti-skolneho.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Žádost o prominutí školného 2025/2026</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Nature school -->
-      <div class="mb-8">
-        <h3 class="font-bold text-primary-700 mb-3 text-lg">Školka v přírodě</h3>
-        <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href={url('/documents/svpr-prihlaska-kitty.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Přihláška — Kitty</span>
-          </a>
-          <a href={url('/documents/svpr-prihlaska-cestice.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Přihláška — Čestice</span>
-          </a>
-          <a href={url('/documents/svpr-bezinfekcnost-kitty.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Bezinfekčnost — Kitty</span>
-          </a>
-          <a href={url('/documents/svpr-seznam-veci.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Seznam věcí</span>
-          </a>
-          <a href={url('/documents/svpr-zdravotni-dotaznik.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Zdravotní dotazník</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- GDPR -->
-      <div>
-        <h3 class="font-bold text-primary-700 mb-3 text-lg">Ochrana osobních údajů</h3>
-        <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href={url('/documents/gdpr-smernice.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Směrnice ochrany osobních údajů</span>
-          </a>
-          <a href={url('/documents/gdpr-doplnujici.zip')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-blue-500 shrink-0">ZIP</span>
-            <span class="text-gray-700 text-sm">Doplňující dokumenty</span>
-          </a>
-        </div>
-      </div>
+      ))}
     </section>
 
     <!-- FAQ -->
     <section id="faq">
       <h2 class="text-2xl font-bold text-primary-700 mb-6">Často kladené otázky</h2>
       <div class="space-y-3">
-        <FaqItem question="Jaká je provozní doba a jak funguje předávání dětí?">
-          <p>Provozní doba je <strong>6:30 / 7:00 – 17:00</strong>. Přivést i vyzvednout dítě můžete kdykoliv během provozu. Děti s povinnou předškolní docházkou přichází od 7:00 do 9:00 (doporučujeme do 8:30).</p>
-          <p class="mt-2">Dítě vždy osobně předávejte učitelce — totéž platí při vyzvedávání. Další osoby oprávněné k vyzvednutí uveďte do osobní karty dítěte.</p>
-          <p class="mt-2"><strong>Rodiče odpovídají za to, že dítě předávají zdravé.</strong></p>
-        </FaqItem>
-
-        <FaqItem question="Co potřebuje dítě do školky?">
-          <ul class="list-disc list-inside space-y-1">
-            <li>Přezůvky a pohodlné oblečení do třídy</li>
-            <li>Pyžamo</li>
-            <li>Převlečení na zahradu a náhradní oblečení</li>
-            <li>Oblečení do solné jeskyně (bačkory, tepláky, mikina)</li>
-            <li>Kartáček na zuby s pastou</li>
-          </ul>
-          <p class="mt-2"><strong>Vše prosíme podepsané!</strong></p>
-        </FaqItem>
-
-        <FaqItem question="Jak probíhá adaptace?">
-          <p>Každé dítě si zvyká jinak. Po dohodě s učitelkou můžete v prvních dnech pobýt s dítětem ve třídě. Menším dětem pomáhá postupné prodlužování pobytu — nejprve do vycházky, pak do oběda, postupně na celý den.</p>
-          <p class="mt-2">Tip: Loučení ať je krátké, jasné a pozitivní.</p>
-        </FaqItem>
-
-        <FaqItem question="Musí dítě ve školce spát?">
-          <p>Nemusí — stačí odpočívat. Čteme pohádky, pouštíme relaxační hudbu. Mnohé děti, které doma nespí, ve školce klidně usnou.</p>
-        </FaqItem>
-
-        <FaqItem question="Jak omluvit nepřítomnost dítěte?">
-          <p>Absenci omluvte osobně, telefonicky nebo emailem na <a href="mailto:skolkanakorabeomluvydeti@seznam.cz" class="text-primary-500 hover:underline">skolkanakorabeomluvydeti@seznam.cz</a> <strong>do 8:00</strong>. Jinak je dítě automaticky přihlášeno ke stravování.</p>
-        </FaqItem>
-
-        <FaqItem question="Jak funguje stravování?">
-          <p>Dopolední svačina, oběd (polévka + hlavní chod) a odpolední svačina. Celý den je k dispozici pitný režim (voda, čaj, šťáva).</p>
-          <p class="mt-2">Jídelníček najdete na nástěnce v šatně a na Moodlu. Dietní stravování je možné po dohodě s lékařským potvrzením.</p>
-        </FaqItem>
-
-        <FaqItem question="Jaké kroužky a aktivity nabízíte?">
-          <p><strong>V ceně školného:</strong> sauna, solná jeskyně, kroužek předškoláka, Klub malého diváka</p>
-          <p class="mt-2"><strong>Placené kroužky:</strong> plavání, angličtina, keramika, flétna, jóga, kung-fu</p>
-          <p class="mt-2">Kroužky jsou primárně pro starší děti. U mladších (3–4 roky) záleží na individuální zralosti.</p>
-        </FaqItem>
-
-        <FaqItem question="Co když dítě ve školce onemocní?">
-          <p><strong>Ano, je potřeba si dítě co nejdříve vyzvednout.</strong> Učitelka vás kontaktuje při teplotě, zvracení, průjmu, zánětu očí nebo výskytu vší.</p>
-        </FaqItem>
-
-        <FaqItem question="Jak se dozvím o akcích a dění ve školce?">
-          <p>Přes <a href="http://dlk.cuni.cz/course/view.php?id=98" class="text-primary-500 hover:underline" target="_blank" rel="noopener">Moodle</a> (informační portál pro rodiče), na webu školy a na nástěnkách v šatnách.</p>
-        </FaqItem>
-
-        <FaqItem question="Kdy mohu mluvit s učitelkou nebo ředitelkou?">
-          <p>S třídní učitelkou při předávání dítěte, nebo si domluvte konzultaci přes Moodle. S ředitelkou po předchozí telefonické domluvě.</p>
-        </FaqItem>
-      </div>
-    </section>
-
-    <!-- Useful links -->
-    <section id="odkazy">
-      <h2 class="text-2xl font-bold text-primary-700 mb-6">Užitečné odkazy</h2>
-      <div class="grid sm:grid-cols-2 gap-4">
-        <a href="http://dlk.cuni.cz/course/view.php?id=98" target="_blank" rel="noopener" class="bg-white rounded-xl border border-gray-200 p-4 hover:bg-gray-50 transition-colors">
-          <p class="font-bold text-primary-700">Moodle</p>
-          <p class="text-sm text-gray-500">Informační portál pro rodiče</p>
-        </a>
-        <a href="http://msnakorabe.rajce.idnes.cz/" target="_blank" rel="noopener" class="bg-white rounded-xl border border-gray-200 p-4 hover:bg-gray-50 transition-colors">
-          <p class="font-bold text-primary-700">Fotogalerie</p>
-          <p class="text-sm text-gray-500">Fotky na portálu Rajče</p>
-        </a>
-        <a href="https://www.praha8.cz" target="_blank" rel="noopener" class="bg-white rounded-xl border border-gray-200 p-4 hover:bg-gray-50 transition-colors">
-          <p class="font-bold text-primary-700">Městská část Praha 8</p>
-          <p class="text-sm text-gray-500">Web zřizovatele</p>
-        </a>
-        <a href="https://www.prahaskolska.eu/mhmp-post/obecne-zavazna-vyhlaska-hlavniho-mesta-prahy-o-skolskych-obvodech-materskych-skol/" target="_blank" rel="noopener" class="bg-white rounded-xl border border-gray-200 p-4 hover:bg-gray-50 transition-colors">
-          <p class="font-bold text-primary-700">Školské obvody MŠ</p>
-          <p class="text-sm text-gray-500">Obecně závazná vyhláška</p>
-        </a>
-      </div>
-
-      <!-- Budget documents -->
-      <div class="mt-6">
-        <h3 class="font-bold text-primary-700 mb-3">Rozpočtové dokumenty</h3>
-        <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-          <a href={url('/documents/rozpocet-2025-schvaleny.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Schválený rozpočet na rok 2025</span>
-          </a>
-          <a href={url('/documents/navrh-rozpoctu-2025-2027.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Návrh rozpočtu 2025 a střednědobý výhled 2026–2027</span>
-          </a>
-          <a href={url('/documents/strednedoby-vyhled-2026-2028.pdf')} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-            <span class="text-red-500 shrink-0">PDF</span>
-            <span class="text-gray-700 text-sm">Střednědobý výhled 2026–2028</span>
-          </a>
-        </div>
+        {await Promise.all(faqItems.map(async (item) => {
+          const { Content } = await render(item);
+          return (
+            <FaqItem question={item.data.question}>
+              <Content />
+            </FaqItem>
+          );
+        }))}
       </div>
     </section>
   </div>

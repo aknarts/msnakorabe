@@ -1,50 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 
-const classes = [
-  {
-    name: 'Lvíčatka',
-    emoji: '🦁',
-    teachers: [
-      { name: 'Čechová Kateřina, DiS.', role: 'třídní učitelka' },
-      { name: 'Mgr. Francová Hana', role: null },
-      { name: 'Bc. Nájemníková Kateřina', role: null },
-    ],
-  },
-  {
-    name: 'Hrošíci',
-    emoji: '🦛',
-    teachers: [
-      { name: 'Tůmová Ivana', role: 'třídní učitelka' },
-      { name: 'Bc. Zdařilová Veronika', role: null },
-    ],
-  },
-  {
-    name: 'Opičky',
-    emoji: '🐒',
-    teachers: [
-      { name: 'Piotrowská Jitka', role: 'třídní učitelka' },
-      { name: 'Šlanhofová Lenka', role: null },
-    ],
-  },
-  {
-    name: 'Sluníčka',
-    emoji: '☀️',
-    teachers: [
-      { name: 'Tichá Kateřina', role: 'třídní učitelka' },
-      { name: 'Kubíková Andrea', role: null },
-    ],
-  },
-  {
-    name: 'Berušky',
-    emoji: '🐞',
-    teachers: [
-      { name: 'Paříková Jana', role: 'třídní učitelka' },
-      { name: 'Rašková Ester', role: null },
-      { name: 'Lonská Jana', role: 'asistent pedagoga' },
-    ],
-  },
-];
+const siteEntries = await getCollection('site');
+const s = siteEntries[0].data;
+
+const personnelEntries = await getCollection('personnel');
+const management = personnelEntries.filter(p => p.data.section === 'management' && p.data.phone);
+const classes = personnelEntries.filter(p => p.data.section === 'classes');
 ---
 
 <BaseLayout title="Třídy | MŠ Na Korábě" description="Třídy a učitelky MŠ Na Korábě — Lvíčatka, Hrošíci, Opičky, Sluníčka, Berušky.">
@@ -63,7 +26,7 @@ const classes = [
         <h2 class="font-bold text-primary-700 text-lg">Virtuální prohlídka</h2>
         <p class="text-gray-600 text-sm">Prohlédněte si naše třídy online.</p>
       </div>
-      <a href="http://www.virtualni-skoly.cz/skola/90-ms-na-korabe" target="_blank" rel="noopener" class="shrink-0 bg-primary-600 hover:bg-primary-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors">
+      <a href={s.virtual_tour_url} target="_blank" rel="noopener" class="shrink-0 bg-primary-600 hover:bg-primary-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors">
         Otevřít prohlídku
       </a>
     </div>
@@ -72,22 +35,16 @@ const classes = [
     <div class="mb-10">
       <h2 class="text-2xl font-bold text-primary-700 mb-4">Vedení školy</h2>
       <div class="grid sm:grid-cols-2 gap-4">
-        <div class="bg-white rounded-xl border border-gray-200 p-5">
-          <p class="font-bold text-primary-700">Mgr. Hana Francová</p>
-          <p class="text-sm text-gray-600">Ředitelka školy</p>
-          <p class="text-sm text-gray-500 mt-1">
-            <a href="tel:+420728125539" class="hover:text-primary-500">+420 728 125 539</a> &middot;
-            <a href="mailto:reditelka@msnakorabe.cz" class="hover:text-primary-500">reditelka@msnakorabe.cz</a>
-          </p>
-        </div>
-        <div class="bg-white rounded-xl border border-gray-200 p-5">
-          <p class="font-bold text-primary-700">Jana Paříková</p>
-          <p class="text-sm text-gray-600">Zástupkyně ředitelky, vedoucí učitelka MŠ Lindnerova</p>
-          <p class="text-sm text-gray-500 mt-1">
-            <a href="tel:+420739643387" class="hover:text-primary-500">+420 739 643 387</a> &middot;
-            <a href="mailto:zastupkyne@msnakorabe.cz" class="hover:text-primary-500">zastupkyne@msnakorabe.cz</a>
-          </p>
-        </div>
+        {management.map(m => (
+          <div class="bg-white rounded-xl border border-gray-200 p-5">
+            <p class="font-bold text-primary-700">{m.data.name}</p>
+            <p class="text-sm text-gray-600">{m.data.title}</p>
+            <p class="text-sm text-gray-500 mt-1">
+              <a href={`tel:${m.data.phone?.replace(/\s/g, '')}`} class="hover:text-primary-500">{m.data.phone}</a> &middot;
+              <a href={`mailto:${m.data.email}`} class="hover:text-primary-500">{m.data.email}</a>
+            </p>
+          </div>
+        ))}
       </div>
     </div>
 
@@ -96,10 +53,10 @@ const classes = [
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {classes.map(cls => (
         <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-          <div class="text-4xl mb-3">{cls.emoji}</div>
-          <h3 class="font-bold text-xl text-primary-700 mb-3">Třída {cls.name}</h3>
+          <div class="text-4xl mb-3">{cls.data.emoji}</div>
+          <h3 class="font-bold text-xl text-primary-700 mb-3">Třída {cls.data.class_name}</h3>
           <ul class="space-y-1.5">
-            {cls.teachers.map(teacher => (
+            {cls.data.teachers?.map(teacher => (
               <li class="text-sm text-gray-700">
                 <span class="font-medium">{teacher.name}</span>
                 {teacher.role && (

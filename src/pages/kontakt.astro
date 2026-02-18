@@ -1,5 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const siteEntries = await getCollection('site');
+const s = siteEntries[0].data;
+
+const personnelEntries = await getCollection('personnel');
+const management = personnelEntries.filter(p => p.data.section === 'management');
 ---
 
 <BaseLayout title="Kontakt | MŠ Na Korábě" description="Kontaktní informace MŠ Na Korábě a MŠ Lindnerova, Praha 8 – Libeň.">
@@ -16,9 +23,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="bg-accent-50 rounded-2xl p-6">
       <h2 class="font-bold text-primary-700 text-lg mb-2">Provozní doba</h2>
       <p class="text-gray-700">
-        <strong>6:30 / 7:00 – 17:00</strong> &middot; 
-        Děti splňující povinnou předškolní docházku přichází od 7:00 do 9:00. 
-        Doporučujeme příchod do 8:30.
+        <strong>{s.hours}</strong> &middot; 
+        {s.hours_note}
       </p>
     </div>
 
@@ -75,30 +81,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <section>
       <h2 class="text-2xl font-bold text-primary-700 mb-4">Vedení školy</h2>
       <div class="grid sm:grid-cols-2 gap-4">
-        <div class="bg-gray-50 rounded-xl p-5">
-          <p class="font-bold text-primary-700">Mgr. Hana Francová</p>
-          <p class="text-sm text-gray-600 mb-2">Ředitelka školy</p>
-          <p class="text-sm text-gray-700">
-            <a href="tel:+420728125539" class="text-primary-500 hover:underline">+420 728 125 539</a><br />
-            <a href="mailto:reditelka@msnakorabe.cz" class="text-primary-500 hover:underline">reditelka@msnakorabe.cz</a>
-          </p>
-          <p class="text-xs text-gray-500 mt-2">Úřední hodiny po telefonické domluvě</p>
-        </div>
-        <div class="bg-gray-50 rounded-xl p-5">
-          <p class="font-bold text-primary-700">Jana Paříková</p>
-          <p class="text-sm text-gray-600 mb-2">Zástupkyně ředitelky</p>
-          <p class="text-sm text-gray-700">
-            <a href="tel:+420739643387" class="text-primary-500 hover:underline">+420 739 643 387</a><br />
-            <a href="mailto:zastupkyne@msnakorabe.cz" class="text-primary-500 hover:underline">zastupkyne@msnakorabe.cz</a>
-          </p>
-        </div>
-        <div class="bg-gray-50 rounded-xl p-5">
-          <p class="font-bold text-primary-700">Mgr. Lucie Francová</p>
-          <p class="text-sm text-gray-600 mb-2">Vedoucí školní jídelny</p>
-          <p class="text-sm text-gray-700">
-            <a href="mailto:hospodarka@msnakorabe.cz" class="text-primary-500 hover:underline">hospodarka@msnakorabe.cz</a>
-          </p>
-        </div>
+        {management.map(m => (
+          <div class="bg-gray-50 rounded-xl p-5">
+            <p class="font-bold text-primary-700">{m.data.name}</p>
+            <p class="text-sm text-gray-600 mb-2">{m.data.title}</p>
+            <p class="text-sm text-gray-700">
+              {m.data.phone && (
+                <><a href={`tel:${m.data.phone.replace(/\s/g, '')}`} class="text-primary-500 hover:underline">{m.data.phone}</a><br /></>
+              )}
+              {m.data.email && (
+                <a href={`mailto:${m.data.email}`} class="text-primary-500 hover:underline">{m.data.email}</a>
+              )}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -106,9 +102,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <section>
       <h2 class="text-2xl font-bold text-primary-700 mb-4">Úřední údaje</h2>
       <div class="bg-gray-50 rounded-xl p-5 text-sm text-gray-700 space-y-1">
-        <p><strong>IČO:</strong> 70919747</p>
-        <p><strong>Datová schránka:</strong> z7ikxu2</p>
-        <p><strong>Zřizovatel:</strong> <a href="https://www.praha8.cz" class="text-primary-500 hover:underline" target="_blank" rel="noopener">Městská část Praha 8</a></p>
+        <p><strong>IČO:</strong> {s.ico}</p>
+        <p><strong>Datová schránka:</strong> {s.data_box}</p>
+        <p><strong>Zřizovatel:</strong> <a href={s.founder.url} class="text-primary-500 hover:underline" target="_blank" rel="noopener">{s.founder.name}</a></p>
       </div>
     </section>
 

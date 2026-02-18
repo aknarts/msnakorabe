@@ -1,112 +1,156 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveDivider from '../components/WaveDivider.astro';
 import { url } from '../utils';
+import { getCollection } from 'astro:content';
+
+const siteEntries = await getCollection('site');
+const s = siteEntries[0].data;
+
+const personnelEntries = await getCollection('personnel');
+const classes = personnelEntries.filter(p => p.data.section === 'classes');
+const kitchenEntries = personnelEntries.filter(p => p.data.section === 'kitchen');
+const otherStaff = personnelEntries.find(p => p.id === 'other-staff')?.data;
+const cafeteriaManager = personnelEntries.find(p => p.id === 'cafeteria-manager')?.data;
+
+const buildingNames = ['Na Korábě', 'Lindnerova'];
+const classesByBuilding = (name: string) => classes.filter(c => c.data.building === name);
 ---
 
 <BaseLayout title="O nás | MŠ Na Korábě" description="Mateřská škola Na Korábě – rodinná školka v Praze 8 s vlastní zahradou, saunou a oceňovanou jídelnou.">
-  <!-- Page header -->
-  <section class="bg-gradient-to-r from-primary-50 to-sky-50 py-10">
+  <section class="bg-gradient-to-r from-accent-50 to-sky-50 py-10">
     <div class="max-w-6xl mx-auto px-4">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary-700">O nás</h1>
-      <p class="text-gray-600 mt-2">Mateřská škola, Praha 8, Na Korábě 2</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-primary-700">{s.name}</h1>
+      <p class="text-gray-600 mt-2">IČO: {s.ico}</p>
     </div>
   </section>
 
   <div class="max-w-6xl mx-auto px-4 py-10 space-y-12">
-    <!-- Philosophy -->
     <section>
       <h2 class="text-2xl font-bold text-primary-700 mb-4">Filosofie školy</h2>
       <blockquote class="border-l-4 border-accent-400 pl-4 italic text-gray-600 mb-4">
-        „Dát dětem pevné základy do života — s radostí, porozuměním a hrou."
+        „{s.motto}"
       </blockquote>
       <p class="text-gray-700 leading-relaxed mb-4">
-        Jsme školka rodinného typu, kde se každé dítě cítí bezpečně a přijímané. 
-        Zaměřujeme se na rozvoj sebedůvěry, samostatnosti a schopnosti rozhodovat se — 
-        a to vše hravou formou, přirozeně a s respektem k individualitě každého dítěte.
+        {s.intro}
       </p>
-      <p class="text-gray-700 leading-relaxed">
-        Náš vlastní vzdělávací program <strong>„Na jedné lodi — Korábu"</strong> provází 
-        děti celým rokem a propojuje všechny aktivity do jednoho smysluplného celku.
+      <p class="text-gray-700 leading-relaxed mb-4">
+        {s.school_type}
+      </p>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        {s.program_description}
+      </p>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        „{s.philosophy}"
+      </p>
+      <p class="text-primary-700 font-bold">
+        {s.goal}
       </p>
     </section>
 
-    <!-- Two locations -->
+    <section>
+      <h2 class="text-2xl font-bold text-primary-700 mb-4">Moodle</h2>
+      <p class="text-gray-700 leading-relaxed">
+        {s.moodle_description}
+      </p>
+      <p class="mt-2">
+        <a href={s.moodle_url} class="text-primary-500 hover:underline" target="_blank" rel="noopener">Otevřít Moodle &rarr;</a>
+      </p>
+    </section>
+
     <section>
       <h2 class="text-2xl font-bold text-primary-700 mb-6">Naše pracoviště</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-          <img src={url('/images/img4D.jpg')} alt="Budova MŠ Na Korábě" class="w-full h-48 object-cover" loading="lazy" />
-          <div class="p-5">
-            <h3 class="font-bold text-lg text-primary-700 mb-1">MŠ Na Korábě</h3>
-            <p class="text-gray-600 text-sm">Na Korábě 2/350, 180 00 Praha 8 – Libeň</p>
-          </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-          <img src={url('/images/img4E.jpg')} alt="Budova MŠ Lindnerova" class="w-full h-48 object-cover" loading="lazy" />
-          <div class="p-5">
-            <h3 class="font-bold text-lg text-primary-700 mb-1">MŠ Lindnerova</h3>
-            <p class="text-gray-600 text-sm">Lindnerova 1/575, 180 00 Praha 8 – Libeň</p>
-          </div>
-        </div>
+        {s.buildings.map((b, i) => {
+          const bClasses = classesByBuilding(buildingNames[i]);
+          return (
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+              <img src={url(b.image)} alt={`Budova ${b.name}`} class="w-full h-48 object-cover" loading="lazy" />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-primary-700 mb-1">{b.name}</h3>
+                <p class="text-gray-600 text-sm mb-3">{b.address}</p>
+                {b.garden && (
+                  <p class="text-gray-600 text-sm mb-3">
+                    <span class="font-medium text-gray-700">Zahrada:</span> {b.garden}
+                  </p>
+                )}
+                {bClasses.length > 0 && (
+                  <div class="flex flex-wrap gap-2">
+                    {bClasses.map(c => (
+                      <a href={url('/tridy')} class="inline-flex items-center gap-1 text-sm bg-primary-50 text-primary-700 px-2.5 py-1 rounded-lg hover:bg-primary-100 transition-colors">
+                        <span>{c.data.emoji}</span>
+                        <span>{c.data.class_name}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
 
-    <!-- Garden -->
-    <section>
-      <h2 class="text-2xl font-bold text-primary-700 mb-4">Školní zahrada</h2>
-      <p class="text-gray-700 leading-relaxed mb-6">
-        Obě pracoviště mají prostorné zahrady parkového typu s moderními herními prvky. 
-        Děti se tu starají o vlastní záhonky a učí se tak základům péče o přírodu.
-      </p>
-      <div class="grid sm:grid-cols-2 gap-4">
-        <img src={url('/images/img54.jpg')} alt="Školní zahrada" class="rounded-xl w-full h-56 object-cover" loading="lazy" />
-        <img src={url('/images/img55.jpg')} alt="Dětské záhonky" class="rounded-xl w-full h-56 object-cover" loading="lazy" />
-      </div>
-    </section>
-
-    <!-- Cafeteria -->
     <section>
       <h2 class="text-2xl font-bold text-primary-700 mb-4">Školní jídelna</h2>
       <p class="text-gray-700 leading-relaxed mb-4">
-        Vaříme přímo v obou budovách — čerstvě, pestře a s láskou. 
-        Naše kuchyně se pravidelně umísťují na předních příčkách celostátních soutěží.
+        {s.kitchen_description}
       </p>
       <div class="bg-accent-50 rounded-xl p-5 mb-6">
         <h3 class="font-bold text-primary-700 mb-2">Ocenění</h3>
         <ul class="text-gray-700 text-sm space-y-1.5 list-disc list-inside">
-          <li><strong>1. místo</strong> v soutěži „Školní jídelna chutně a zdravě" (HHMP, 2016/2017)</li>
-          <li><strong>4x finále</strong> celostátní soutěže „O nejlepší školní oběd"</li>
-          <li><strong>4. místo</strong> z 90 týmů školních jídelen z celé ČR (2013)</li>
-          <li><strong>Cena veřejnosti</strong> (2014)</li>
+          {s.kitchen_awards.map(award => (
+            <li>{award}</li>
+          ))}
         </ul>
       </div>
       <img src={url('/images/img56.jpg')} alt="Kolektiv školní jídelny" class="rounded-xl w-full max-w-md" loading="lazy" />
     </section>
 
-    <!-- Cooperation -->
     <section>
       <h2 class="text-2xl font-bold text-primary-700 mb-4">Spolupráce</h2>
       <ul class="text-gray-700 space-y-2 list-disc list-inside">
         <li>Pedagogicko-psychologická poradna pro Prahu 7 a 8 — včetně individuálních výukových plánů</li>
         <li>Katedrová škola katedry Školského managementu PedF UK</li>
         <li>Projekt MAP MČ Praha 8</li>
-        <li>Informační portál <a href="http://dlk.cuni.cz/course/view.php?id=98" class="text-primary-500 hover:underline" target="_blank" rel="noopener">Moodle</a> pro rodiče a pedagogy</li>
+        <li>Informační portál <a href={s.moodle_url} class="text-primary-500 hover:underline" target="_blank" rel="noopener">Moodle</a> pro rodiče a pedagogy</li>
       </ul>
     </section>
 
-    <!-- Staff -->
     <section>
-      <h2 class="text-2xl font-bold text-primary-700 mb-4">Provozní zázemí</h2>
-      <div class="grid sm:grid-cols-2 gap-6">
+      <h2 class="text-2xl font-bold text-primary-700 mb-2">Naši lidé — provozní zázemí</h2>
+      <p class="text-gray-600 mb-6">
+        O chod obou budov, stravování a zázemí se starají skvělí lidé, bez kterých by to nešlo.
+      </p>
+      <div class="space-y-6">
         <div class="bg-gray-50 rounded-xl p-5">
-          <h3 class="font-bold text-primary-700 mb-2">Školní jídelna</h3>
-          <p class="text-sm text-gray-600">Vedoucí: Mgr. Lucie Francová</p>
-          <p class="text-sm text-gray-600 mt-2">Vlastní kuchyně v obou budovách s týmem zkušených kuchařek.</p>
+          <h3 class="font-bold text-primary-700 mb-3">Školní jídelna</h3>
+          {cafeteriaManager && (
+            <p class="text-gray-700 mb-3">{cafeteriaManager.name} — {cafeteriaManager.title?.toLowerCase()}</p>
+          )}
+          <div class="grid sm:grid-cols-2 gap-4">
+            {kitchenEntries.map(k => (
+              <div>
+                <p class="text-sm font-medium text-primary-700 mb-1">{k.data.building}</p>
+                <ul class="text-sm text-gray-700 space-y-0.5">
+                  {k.data.staff?.map(person => (
+                    <li>{person.name} — {person.role}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-        <div class="bg-gray-50 rounded-xl p-5">
-          <h3 class="font-bold text-primary-700 mb-2">Provoz a údržba</h3>
-          <p class="text-sm text-gray-600">O obě budovy a zahrady se stará provozní tým pod vedením školnice.</p>
-        </div>
+        {otherStaff?.staff && (
+          <div class="bg-gray-50 rounded-xl p-5">
+            <h3 class="font-bold text-primary-700 mb-3">Provoz a údržba</h3>
+            <ul class="text-sm text-gray-700 space-y-0.5">
+              {otherStaff.staff.map(person => (
+                <li>{person.name} — {person.role}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   </div>
