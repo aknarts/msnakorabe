@@ -3,7 +3,18 @@ import { url } from '../utils';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-primary-800 text-primary-100 mt-16">
+<div class="ocean-waves ocean-waves-dark" aria-hidden="true">
+  <svg class="wave wave-back" viewBox="0 0 2880 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C180,50 360,10 540,30 C720,50 900,10 1080,30 C1260,50 1440,10 1620,30 C1800,50 1980,10 2160,30 C2340,50 2520,10 2700,30 C2880,50 2880,30 2880,30 L2880,60 L0,60 Z" fill="#1a4f6f" />
+  </svg>
+  <svg class="wave wave-mid" viewBox="0 0 2880 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,25 C240,45 480,5 720,25 C960,45 1200,5 1440,25 C1680,45 1920,5 2160,25 C2400,45 2640,5 2880,25 L2880,60 L0,60 Z" fill="#143d56" opacity="0.7" />
+  </svg>
+  <svg class="wave wave-front" viewBox="0 0 2880 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,35 C160,50 320,15 480,35 C640,50 800,15 960,35 C1120,50 1280,15 1440,35 C1600,50 1760,15 1920,35 C2080,50 2240,15 2400,35 C2560,50 2720,15 2880,35 L2880,60 L0,60 Z" fill="#143d56" />
+  </svg>
+</div>
+<footer class="bg-primary-800 text-primary-100">
   <div class="max-w-6xl mx-auto px-4 py-10">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- School info -->
