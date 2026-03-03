@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #eef6fb;
-  --color-primary-100: #d4e9f5;
-  --color-primary-200: #a9d3eb;
-  --color-primary-300: #6db5da;
-  --color-primary-400: #3a96c4;
-  --color-primary-500: #2578a4;
-  --color-primary-600: #1e6088;
-  --color-primary-700: #1a4f6f;
-  --color-primary-800: #143d56;
-  --color-primary-900: #0d2a3c;
+  --color-primary-50:  #f0f7ff;
+  --color-primary-100: #e0efff;
+  --color-primary-200: #b8ddff;
+  --color-primary-300: #7ac4ff;
+  --color-primary-400: #38a8fa;
+  --color-primary-500: #0d8de8;
+  --color-primary-600: #0071c5;
+  --color-primary-700: #005da3;
+  --color-primary-800: #054d87;
+  --color-primary-900: #0a3f6e;
 
   --color-accent-50: #fffbeb;
   --color-accent-100: #fef3c7;
@@ -138,4 +138,24 @@
 
 .ocean-waves-dark {
   margin-top: 3rem;
+}
+
+/* Hero image — wavy border frame with two-tone blue gradient */
+.hero-wavy-frame {
+  /* Two-tone blue gradient = the visible border */
+  background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-400));
+  padding: 5px;
+  /* Wavy clip on the outer edge */
+  clip-path: url(#wavy-frame);
+  -webkit-clip-path: url(#wavy-frame);
+  /* Soft glow around the wavy shape */
+  filter:
+    drop-shadow(0 0 2px rgba(255, 255, 255, 0.5))
+    drop-shadow(0 2px 10px rgba(0, 0, 0, 0.2));
+}
+
+/* Image also wavy-clipped so inner edge matches outer */
+.hero-wavy-img {
+  clip-path: url(#wavy-frame);
+  -webkit-clip-path: url(#wavy-frame);
 }
