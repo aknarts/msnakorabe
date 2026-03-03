@@ -36,6 +36,8 @@ const site = defineCollection({
     philosophy: z.string(),
     goal: z.string(),
     intro: z.string(),
+    hero_heading: z.string().optional(),
+    hero_body: z.array(z.string()).optional(),
     school_type: z.string(),
     program_name: z.string(),
     program_description: z.string(),
