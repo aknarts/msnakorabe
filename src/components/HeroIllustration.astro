@@ -1,0 +1,139 @@
+---
+/**
+ * Ocean wave divider with sailing ship and distant islands.
+ * Sits between the hero section and main content.
+ * Ship sails slowly side-to-side; direction flip happens offscreen.
+ *
+ * Z-layer: 1 (above hero, below floating suns at 10, below header at 50)
+ * Positioning: negative margin overlaps the hero bottom.
+ */
+---
+
+<div class="ocean-divider" aria-hidden="true">
+
+
+  <!-- Wave layers (full-width, animated drift) -->
+  <svg class="ocean-wave ocean-wave-back" viewBox="0 0 2880 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 Q180,65 360,50 Q540,35 720,50 Q900,65 1080,50 Q1260,35 1440,50 Q1620,65 1800,50 Q1980,35 2160,50 Q2340,65 2520,50 Q2700,35 2880,50 L2880,120 L0,120 Z" fill="#38a8fa" opacity="0.35" />
+  </svg>
+  <svg class="ocean-wave ocean-wave-mid" viewBox="0 0 2880 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,62 Q200,75 400,62 Q600,49 800,62 Q1000,75 1200,62 Q1400,49 1600,62 Q1800,75 2000,62 Q2200,49 2400,62 Q2600,75 2880,65 L2880,120 L0,120 Z" fill="#0d8de8" opacity="0.4" />
+  </svg>
+  <svg class="ocean-wave ocean-wave-front" viewBox="0 0 2880 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,85 Q160,95 320,85 Q480,75 640,85 Q800,95 960,85 Q1120,75 1280,85 Q1440,95 1600,85 Q1760,75 1920,85 Q2080,95 2240,85 Q2400,75 2560,85 Q2720,95 2880,88 L2880,120 L0,120 Z" fill="#fdf8f0" />
+  </svg>
+
+  <!-- Sailing ship -->
+  <div class="sailing-ship">
+    <svg class="ship-bob" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Hull -->
+      <path d="M25 55 L30 72 L90 72 L95 55 Z" fill="#92400e" />
+      <path d="M22 55 L98 55 L102 60 L18 60 Z" fill="#b45309" />
+      <path d="M28 60 L92 60 L89 68 L31 68 Z" fill="#d97706" opacity="0.5" />
+      <path d="M31 68 L89 68 L85 75 L35 75 Z" fill="#78350f" />
+
+      <!-- Mast -->
+      <line x1="60" y1="8" x2="60" y2="55" stroke="#92400e" stroke-width="2.5" stroke-linecap="round" />
+
+      <!-- Yard + boom (main sail spars) -->
+      <line x1="62" y1="12" x2="82" y2="12" stroke="#92400e" stroke-width="1.5" stroke-linecap="round" />
+      <line x1="62" y1="52" x2="88" y2="52" stroke="#92400e" stroke-width="1.5" stroke-linecap="round" />
+
+      <!-- Main sail — narrow at top, wide at bottom -->
+      <path d="M62 12 L80 12 Q92 32 86 52 L62 52 Z" fill="white" opacity="0.95" />
+
+      <!-- Secondary sail (left of mast) -->
+      <line x1="58" y1="15" x2="40" y2="15" stroke="#92400e" stroke-width="1.5" stroke-linecap="round" />
+      <line x1="58" y1="50" x2="34" y2="50" stroke="#92400e" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M58 15 L42 15 Q30 33 35 50 L58 50 Z" fill="white" opacity="0.85" />
+
+      <!-- Flag -->
+      <path d="M60 8 L60 0 L74 4 L60 7 Z" fill="#f59e0b" />
+
+      <!-- Bowsprit + jib -->
+      <line x1="95" y1="55" x2="108" y2="49" stroke="#92400e" stroke-width="1.8" stroke-linecap="round" />
+      <path d="M60 14 L104 52 L95 55 Z" fill="white" opacity="0.6" />
+
+      <!-- Portholes -->
+      <circle cx="45" cy="58" r="2" fill="#fcd34d" opacity="0.7" />
+      <circle cx="55" cy="58" r="2" fill="#fcd34d" opacity="0.7" />
+      <circle cx="65" cy="58" r="2" fill="#fcd34d" opacity="0.7" />
+      <circle cx="75" cy="58" r="2" fill="#fcd34d" opacity="0.7" />
+    </svg>
+  </div>
+</div>
+
+<style>
+  .ocean-divider {
+    position: relative;
+    height: 120px;
+    margin-top: -80px;
+    overflow: hidden;
+    z-index: 20;
+    pointer-events: none;
+  }
+
+
+  /* --- Wave drift (same technique as old ocean-waves) --- */
+  .ocean-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 400%;
+    height: 120px;
+  }
+
+  .ocean-wave-back {
+    animation: wave-drift 22s linear infinite;
+  }
+  .ocean-wave-mid {
+    animation: wave-drift 30s linear infinite;
+  }
+  .ocean-wave-front {
+    animation: wave-drift 38s linear infinite;
+  }
+
+  @keyframes wave-drift {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* --- Ship --- */
+  .sailing-ship {
+    position: absolute;
+    bottom: 32px;
+    width: 85px;
+    height: 70px;
+    z-index: 2;
+    /* Position: alternates left ↔ right over 70s each direction.
+       Flip: synced to 140s full cycle, flips at 50% when ship is offscreen.
+       Linear timing = constant speed, no deceleration at edges. */
+    animation:
+      sail-position 70s linear infinite alternate,
+      sail-flip 140s step-end infinite;
+  }
+
+  @keyframes sail-position {
+    0%   { left: -10%; }
+    100% { left: 102%; }
+  }
+
+  @keyframes sail-flip {
+    0%, 49.99%  { transform: scaleX(1); }   /* facing right (going right) */
+    50%, 100%   { transform: scaleX(-1); }  /* facing left (coming back) */
+  }
+
+  /* Bob applied to inner SVG (doesn't conflict with scaleX on parent) */
+  .ship-bob {
+    display: block;
+    width: 100%;
+    height: 100%;
+    animation: bob 3.5s ease-in-out infinite;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    30% { transform: translateY(-2px) rotate(0.8deg); }
+    70% { transform: translateY(1px) rotate(-0.4deg); }
+  }
+</style>
