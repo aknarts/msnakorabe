@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FloatingSuns from '../components/FloatingSuns.astro';
 import BackgroundClouds from '../components/BackgroundClouds.astro';
+import FloatingBoats from '../components/FloatingBoats.astro';
 import { url } from '../utils';
 import '../styles/global.css';
 
@@ -35,6 +36,7 @@ const currentPath = Astro.url.pathname;
   <body class="min-h-screen flex flex-col relative">
     <BackgroundClouds />
     <FloatingSuns />
+    <FloatingBoats />
     <Header currentPath={currentPath} />
     <main class="flex-1">
       <slot />
