@@ -12,7 +12,7 @@ const coin = () => Math.random() > 0.5;
 
 const count = rand(3, 6);
 const sides = ['left', 'right'] as const;
-const sizes = ['w-10 md:w-14', 'w-12 md:w-16', 'w-14 md:w-20', 'w-16 md:w-24'];
+const sizes = ['w-14 md:w-20', 'w-16 md:w-24', 'w-20 md:w-28', 'w-24 md:w-32'];
 
 const tints = [
   'none',
@@ -73,7 +73,7 @@ for (let i = 0; i < count; i++) {
     size: pick(sizes),
     transforms,
     filter: tint === 'none' ? '' : tint,
-    opacity: (rand(10, 20) / 100).toFixed(2),
+    opacity: (rand(20, 40) / 100).toFixed(2),
   });
 }
 ---
