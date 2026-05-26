@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-26T12:00:00Z",
+  "title": "Design System: MŠ Na Korábě",
+  "extensions": {
+    "colorMeta": {
+      "deep-ocean": {
+        "role": "primary",
+        "displayName": "Deep Ocean",
+        "canonical": "oklch(44% 0.12 250)",
+        "tonalRamp": ["#0a3f6e", "#054d87", "#005da3", "#0071c5", "#0d8de8", "#38a8fa", "#7ac4ff", "#b8ddff"]
+      },
+      "golden-sun": {
+        "role": "secondary",
+        "displayName": "Golden Sun",
+        "canonical": "oklch(72% 0.16 75)",
+        "tonalRamp": ["#b45309", "#d97706", "#f59e0b", "#fcd34d", "#fde68a", "#fef3c7", "#fffbeb", "#ffffff"]
+      },
+      "morning-sand": {
+        "role": "neutral",
+        "displayName": "Morning Sand",
+        "canonical": "oklch(98% 0.008 75)",
+        "tonalRamp": ["#054d87", "#4b5563", "#6b7280", "#9ca3af", "#d1d5db", "#e5e7eb", "#faebd7", "#fdf8f0"]
+      },
+      "garden-green": {
+        "role": "tertiary",
+        "displayName": "Garden Green",
+        "canonical": "oklch(78% 0.18 145)",
+        "tonalRamp": ["#166534", "#15803d", "#22c55e", "#4ade80", "#86efac", "#bbf7d0", "#dcfce7", "#f0fdf4"]
+      },
+      "coral-bloom": {
+        "role": "tertiary",
+        "displayName": "Coral Bloom",
+        "canonical": "oklch(68% 0.18 10)",
+        "tonalRamp": ["#9f1239", "#be123c", "#e11d48", "#fb7185", "#fda4af", "#fecdd3", "#ffe4e6", "#fff1f2"]
+      },
+      "bright-marigold": {
+        "role": "tertiary",
+        "displayName": "Bright Marigold",
+        "canonical": "oklch(88% 0.16 95)",
+        "tonalRamp": ["#a16207", "#ca8a04", "#eab308", "#facc15", "#fde047", "#fef08a", "#fef9c3", "#fefce8"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines only. The ship's name on the bow." },
+      "headline": { "displayName": "Headline", "purpose": "Section headers. The structural rhythm of each page." },
+      "title": { "displayName": "Title", "purpose": "Card titles, announcement headlines, sub-section markers." },
+      "body": { "displayName": "Body", "purpose": "Paragraph text. Optimized for comfortable reading at small sizes." },
+      "label": { "displayName": "Label", "purpose": "Metadata, dates, captions, navigation items." }
+    },
+    "shadows": [
+      { "name": "card-rest", "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)", "purpose": "Feature cards and announcement cards at rest." },
+      { "name": "card-hover", "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)", "purpose": "Cards on hover. The only motion feedback most elements get." },
+      { "name": "header", "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)", "purpose": "Sticky header depth indicator." },
+      { "name": "button-cta", "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)", "purpose": "Primary CTA button prominence." }
+    ],
+    "motion": [
+      { "name": "wave-slow", "value": "linear 20s infinite", "purpose": "Background ocean wave drift (back layer)." },
+      { "name": "wave-medium", "value": "linear 27s infinite", "purpose": "Mid-layer ocean wave drift." },
+      { "name": "wave-fast", "value": "linear 35s infinite", "purpose": "Front-layer ocean wave drift." },
+      { "name": "ease-standard", "value": "transition-colors (default Tailwind)", "purpose": "All hover/focus state transitions." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (Golden Sun)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main CTA. Gold background commands attention. One per screen maximum.",
+      "html": "<button class=\"ds-btn-primary\">Zápis 2026/2027</button>",
+      "css": ".ds-btn-primary { background-color: #f59e0b; color: #054d87; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1rem; padding: 12px 24px; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); transition: background-color 0.15s ease; } .ds-btn-primary:hover { background-color: #d97706; } .ds-btn-primary:focus-visible { outline: 2px solid #38a8fa; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action on dark surfaces. Translucent with border.",
+      "html": "<button class=\"ds-btn-ghost\">Kontakt</button>",
+      "css": ".ds-btn-ghost { background-color: rgba(255,255,255,0.15); color: #ffffff; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1rem; padding: 12px 24px; border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; cursor: pointer; backdrop-filter: blur(4px); transition: background-color 0.15s ease; } .ds-btn-ghost:hover { background-color: rgba(255,255,255,0.25); } .ds-btn-ghost:focus-visible { outline: 2px solid #fcd34d; outline-offset: 2px; }"
+    },
+    {
+      "name": "Feature Card",
+      "kind": "card",
+      "refersTo": "card-feature",
+      "description": "Content card with optional top image. White surface, lifts on hover.",
+      "html": "<div class=\"ds-card-feature\"><div class=\"ds-card-feature-img\"><img src=\"placeholder.jpg\" alt=\"Feature\" /></div><div class=\"ds-card-feature-body\"><h3 class=\"ds-card-feature-title\">Vlastní sauna</h3><p class=\"ds-card-feature-text\">Pravidelné saunování posiluje imunitu dětí.</p></div></div>",
+      "css": ".ds-card-feature { background: #ffffff; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); transition: box-shadow 0.2s ease; } .ds-card-feature:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); } .ds-card-feature-img { height: 192px; overflow: hidden; } .ds-card-feature-img img { width: 100%; height: 100%; object-fit: cover; } .ds-card-feature-body { padding: 24px; flex: 1; display: flex; flex-direction: column; } .ds-card-feature-title { font-family: Nunito, system-ui, sans-serif; font-weight: 700; color: #005da3; margin: 0 0 8px 0; font-size: 1.125rem; } .ds-card-feature-text { font-family: Inter, system-ui, sans-serif; color: #4b5563; font-size: 0.875rem; line-height: 1.6; margin: 0; flex: 1; }"
+    },
+    {
+      "name": "Navigation Item",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Header nav link. Subtle rounded pill with active/hover states.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item ds-nav-item--active\" href=\"#\">Domů</a><a class=\"ds-nav-item\" href=\"#\">O nás</a><a class=\"ds-nav-item\" href=\"#\">Program</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 4px; } .ds-nav-item { font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: rgba(224,239,255,1); padding: 8px 12px; border-radius: 8px; text-decoration: none; transition: background-color 0.15s ease, color 0.15s ease; } .ds-nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffffff; } .ds-nav-item--active { background-color: rgba(255,255,255,0.2); color: #ffffff; } .ds-nav-item:focus-visible { outline: 2px solid #fcd34d; outline-offset: 2px; }"
+    },
+    {
+      "name": "FAQ Accordion",
+      "kind": "custom",
+      "refersTo": "faq-item",
+      "description": "Expandable question/answer. CSS-only interaction via details/summary.",
+      "html": "<details class=\"ds-faq\"><summary class=\"ds-faq-summary\"><span>Jak probíhá zápis?</span><svg class=\"ds-faq-chevron\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M19 9l-7 7-7-7\"/></svg></summary><div class=\"ds-faq-content\"><p>Zápis probíhá v květnu...</p></div></details>",
+      "css": ".ds-faq { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; } .ds-faq-summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; cursor: pointer; background: #f9fafb; font-family: Inter, system-ui, sans-serif; font-weight: 500; font-size: 1rem; color: #005da3; list-style: none; transition: background-color 0.15s ease; } .ds-faq-summary:hover { background: #f3f4f6; } .ds-faq-summary::-webkit-details-marker { display: none; } .ds-faq-chevron { color: #9ca3af; transition: transform 0.2s ease; flex-shrink: 0; } .ds-faq[open] .ds-faq-chevron { transform: rotate(180deg); } .ds-faq-content { padding: 16px 20px; border-top: 1px solid #f3f4f6; font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; line-height: 1.6; color: #374151; }"
+    },
+    {
+      "name": "Announcement Card",
+      "kind": "card",
+      "refersTo": "announcement-card",
+      "description": "News/announcement with priority-colored left accent and tinted background.",
+      "html": "<article class=\"ds-announcement ds-announcement--normal\"><div class=\"ds-announcement-header\"><h3 class=\"ds-announcement-title\">Zápis do MŠ</h3><time class=\"ds-announcement-date\">20. ledna 2026</time></div><p class=\"ds-announcement-body\">Informace o zápisu na školní rok 2026/2027.</p></article>",
+      "css": ".ds-announcement { border-left: 4px solid #38a8fa; background: #f0f7ff; border-radius: 0 12px 12px 0; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); } .ds-announcement--high { border-left-color: #f59e0b; background: #fffbeb; } .ds-announcement--urgent { border-left-color: #fb7185; background: #fff1f2; } .ds-announcement-header { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; } .ds-announcement-title { font-family: Nunito, system-ui, sans-serif; font-weight: 700; font-size: 1.125rem; color: #005da3; margin: 0; } .ds-announcement-date { font-family: Inter, system-ui, sans-serif; font-size: 0.75rem; color: #9ca3af; white-space: nowrap; } .ds-announcement-body { font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; line-height: 1.6; color: #374151; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Living Deck",
+    "overview": "The site mirrors the school's garden deck: colorful, alive, things growing in every direction, sunlight breaking through leaves, sturdy planks underfoot but playful surprises at every turn. It is not a brochure. It is a place you visit and feel something.\n\nThe system rejects three things without negotiation: the generic school template (clip-art, stock children, Comic Sans energy), the sterile institutional page (gray walls, text deserts, municipal authority), and the over-designed startup (gratuitous animation, gradient-soaked surfaces, tech aesthetics that signal software, not kindergarten).",
+    "keyCharacteristics": [
+      "Warm background tones (Morning Sand) with deep ocean blue anchoring structure",
+      "Golden sun accents for calls-to-action, drawing the eye like sunlight on water",
+      "Playful shapes balanced by clear information hierarchy",
+      "Bold Nunito headings paired with clean Inter body text",
+      "Animated ocean waves bringing life without overwhelming",
+      "Zero JavaScript; all interaction via CSS"
+    ],
+    "rules": [
+      { "name": "The Sunlight Rule", "body": "Golden Sun appears only on primary CTAs and high-priority interactive elements. Its power comes from scarcity.", "section": "colors" },
+      { "name": "The Never-White Rule", "body": "No surface uses pure white (#fff) or pure black (#000). Morning Sand (#fdf8f0) is the lightest. Navy Deep (#0a3f6e) is the darkest.", "section": "colors" },
+      { "name": "The Nunito-Only Rule", "body": "Headings always use Nunito. Body always uses Inter. Never mix. Never override.", "section": "typography" },
+      { "name": "The Flat-Until-Touched Rule", "body": "Surfaces are flat by default. Shadows appear as response to hover or as structural markers. Never decorative shadow on a static non-interactive element.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use Morning Sand (#fdf8f0) as the base page background.",
+      "Do use Deep Ocean (#005da3) for all heading text.",
+      "Do reserve Golden Sun (#f59e0b) for the primary CTA per screen.",
+      "Do use wave dividers to transition between major sections.",
+      "Do keep body text at 65-75ch maximum line length.",
+      "Do use CSS-only interactions (hover, focus, checkbox toggles, details/summary).",
+      "Do include generous whitespace between sections.",
+      "Do maintain WCAG 2.1 AA contrast on all text."
+    ],
+    "donts": [
+      "Don't use pure white (#fff) or pure black (#000) anywhere.",
+      "Don't use clip-art, generic stock photos, or Comic Sans-adjacent fonts.",
+      "Don't make text-heavy walls without visual breaks.",
+      "Don't add gratuitous gradient overlays, excessive animations, or SaaS-style patterns.",
+      "Don't nest cards inside cards.",
+      "Don't use gradient text (background-clip: text).",
+      "Don't add JavaScript for interactions that CSS can handle.",
+      "Don't use glassmorphism as a default surface treatment.",
+      "Don't animate CSS layout properties."
+    ]
+  }
+}

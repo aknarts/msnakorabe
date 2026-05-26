@@ -43,10 +43,10 @@ const categoryLabels: Record<string, string> = {
   <!-- Quick nav -->
   <div class="max-w-6xl mx-auto px-4 py-6">
     <nav class="flex flex-wrap gap-2">
-      <a href="#aktuality" class="text-sm bg-primary-100 text-primary-700 px-3 py-1.5 rounded-lg hover:bg-primary-200 transition-colors">Aktuality</a>
-      <a href="#dokumenty" class="text-sm bg-primary-100 text-primary-700 px-3 py-1.5 rounded-lg hover:bg-primary-200 transition-colors">Dokumenty</a>
-      <a href="#faq" class="text-sm bg-primary-100 text-primary-700 px-3 py-1.5 rounded-lg hover:bg-primary-200 transition-colors">Časté otázky</a>
-      <a href={url('/odkazy')} class="text-sm bg-primary-100 text-primary-700 px-3 py-1.5 rounded-lg hover:bg-primary-200 transition-colors">Užitečné odkazy</a>
+      <a href="#aktuality" class="text-sm bg-primary-100 text-primary-700 px-3 py-2 rounded-lg hover:bg-primary-200 transition-colors">Aktuality</a>
+      <a href="#dokumenty" class="text-sm bg-primary-100 text-primary-700 px-3 py-2 rounded-lg hover:bg-primary-200 transition-colors">Dokumenty</a>
+      <a href="#faq" class="text-sm bg-primary-100 text-primary-700 px-3 py-2 rounded-lg hover:bg-primary-200 transition-colors">Časté otázky</a>
+      <a href={url('/odkazy')} class="text-sm bg-primary-100 text-primary-700 px-3 py-2 rounded-lg hover:bg-primary-200 transition-colors">Užitečné odkazy</a>
     </nav>
   </div>
 
@@ -84,8 +84,14 @@ const categoryLabels: Record<string, string> = {
           <h3 class="font-bold text-primary-700 mb-3 text-lg">{categoryLabels[cat]}</h3>
           <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
             {docs.map(doc => (
-              <a href={url(`/documents/${doc.data.filename}`)} class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors" target="_blank">
-                <span class={`shrink-0 ${doc.data.filename.endsWith('.zip') ? 'text-blue-500' : 'text-red-500'}`}>
+              <a
+                href={url(`/documents/${doc.data.filename}`)}
+                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
+                target="_blank"
+                rel="noopener"
+                aria-label={`${doc.data.title} (${doc.data.filename.endsWith('.zip') ? 'ZIP' : 'PDF'}, otevře se v novém okně)`}
+              >
+                <span class={`shrink-0 text-xs font-bold ${doc.data.filename.endsWith('.zip') ? 'text-blue-500' : 'text-red-500'}`} aria-hidden="true">
                   {doc.data.filename.endsWith('.zip') ? 'ZIP' : 'PDF'}
                 </span>
                 <span class="text-gray-700 text-sm">{doc.data.title}</span>

@@ -9,9 +9,15 @@ interface Props {
 const { title, date, priority } = Astro.props;
 
 const priorityStyles = {
-  urgent: 'border-l-red-500 bg-red-50',
-  high: 'border-l-accent-400 bg-accent-50',
-  normal: 'border-l-primary-400 bg-primary-50',
+  urgent: 'bg-red-50 ring-1 ring-red-200',
+  high: 'bg-accent-50 ring-1 ring-accent-200',
+  normal: 'bg-primary-50 ring-1 ring-primary-200',
+};
+
+const priorityLabel = {
+  urgent: '🔴',
+  high: '🟡',
+  normal: '',
 };
 
 const formattedDate = date.toLocaleDateString('cs-CZ', {
@@ -21,10 +27,11 @@ const formattedDate = date.toLocaleDateString('cs-CZ', {
 });
 ---
 
-<article class:list={['border-l-4 rounded-r-xl p-5 shadow-sm', priorityStyles[priority]]}>
+<article class:list={['rounded-xl p-5 shadow-sm', priorityStyles[priority]]}>
   <div class="flex items-baseline gap-2 flex-wrap mb-2">
+    {priorityLabel[priority] && <span class="text-sm" aria-hidden="true">{priorityLabel[priority]}</span>}
     <h3 class="font-bold text-lg text-primary-700">{title}</h3>
-    <time class="text-xs text-gray-400 whitespace-nowrap" datetime={date.toISOString()}>
+    <time class="text-xs text-gray-500 whitespace-nowrap" datetime={date.toISOString()}>
       {formattedDate}
     </time>
   </div>

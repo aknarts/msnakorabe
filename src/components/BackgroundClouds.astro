@@ -53,7 +53,7 @@ for (let i = 0; i < count; i++) {
 }
 ---
 
-<div class="bg-clouds" aria-hidden="true">
+<div class="bg-clouds hidden md:block" aria-hidden="true">
   {clouds.map(c => (
     <div
       class="cloud"
@@ -69,6 +69,7 @@ for (let i = 0; i < count; i++) {
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
+    will-change: transform;
   }
 
   .cloud {

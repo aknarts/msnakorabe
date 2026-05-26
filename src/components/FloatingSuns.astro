@@ -78,7 +78,7 @@ for (let i = 0; i < count; i++) {
 }
 ---
 
-<div class="floating-suns" aria-hidden="true">
+<div class="floating-suns hidden md:block" aria-hidden="true">
   {items.map(item => {
     const filterPart = item.filter ? `filter:${item.filter};` : '';
     return (
@@ -98,8 +98,9 @@ for (let i = 0; i < count; i++) {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 10;  /* above content sections, below header (z-50) */
+    z-index: 10;
     overflow: hidden;
+    will-change: transform;
   }
 
   .floating-sun {
